@@ -6,7 +6,7 @@
 #    By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 23:54:10 by yuotsubo          #+#    #+#              #
-#    Updated: 2024/04/15 23:54:10 by yuotsubo         ###   ########.fr        #
+#    Updated: 2024/05/08 21:20:37 by yuotsubo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = ft_atoi.c \
 		ft_isascii.c \
 		ft_isdigit.c \
 		ft_isprint.c \
+		ft_isspace.c \
 		ft_memchr.c \
 		ft_memcmp.c \
 		ft_memcpy.c \
@@ -53,7 +54,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) rcs $(NAME) $(OBJS)
+	$(AR) rc $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -66,7 +67,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re norm 
-
-norm: $(SRCS)
-	norminette $>
+.PHONY: all clean fclean re

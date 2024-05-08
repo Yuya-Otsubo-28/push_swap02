@@ -43,6 +43,8 @@ int		ft_isdigit(int c);
 
 int		ft_isprint(int c);
 
+int		ft_isspace(char c);
+
 char	*ft_itoa(int n);
 
 void	*ft_memchr(const void *b, int c, size_t len);
