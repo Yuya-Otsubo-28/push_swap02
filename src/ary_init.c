@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ary_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/08 21:30:10 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:24:25 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,26 @@ static t_bool	is_valid_arg(char *arg)
 	return (true);
 }
 
+t_bool	is_duplicated(int *ary, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (ary[i] == ary[j])
+				return (true);
+			j++;
+		}
+		i++;
+	}
+	return (false);
+}
+
 int	*ary_init(int argc, char *argv[])
 {
 	size_t	i;
@@ -73,13 +93,15 @@ int	*ary_init(int argc, char *argv[])
 		res[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
+	if (is_duplicated(res, argc - 1))
+		return (err_return(res));
 	return (res);
 }
 
 // int	main(void)
 // {
 // 	int	*res;
-// 	char *argv[] = {"this is the program name", "123", "134", "621", "431"};
+// 	char *argv[] = {"this is the program name", "134", "134", "621", "431"};
 
 // 	res = ary_init(5, argv);
 // 	if (!res)
