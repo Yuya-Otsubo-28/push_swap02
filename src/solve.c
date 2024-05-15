@@ -6,15 +6,15 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:46:58 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/15 15:51:50 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:06:59 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../push_swap.h"
 
-char	*solve(t_pslist **stack_a)
+char	*solve(t_data *data)
 {
 	char		*res;
-	t_pslist	**stack_b;
+	
 }
