@@ -66,6 +66,26 @@ t_pslist	**stack_init(int *input, int size)
 	return (res);
 }
 
+t_data	*data_init(int *input, int size)
+{
+	t_data	*res;
+
+	res = (t_data *)malloc(sizeof(t_data));
+	if (!res)
+		return (NULL);
+	res->stack_a = stack_init(input, size);
+	if (!res->stack_a)
+	{
+		free(res);
+		return (NULL);
+	}
+	res->stack_b = NULL;
+	res->total_size = size;
+	res->a_size = size;
+	res->b_size = 0;
+	return (res);
+}
+
 // int	main(void)
 // {
 // 	int			input[] = {12, 234, 45, 56};

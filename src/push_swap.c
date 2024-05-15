@@ -6,19 +6,44 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/15 15:43:11 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:20:36 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-static int	err_return(int *input, t_pslist *stack_a)
+static t_data *free_data(t_data *data)
+{
+	int			i;
+	int			j;
+	t_pslist	*tmp;
+
+	i = 0;
+	while (i++ < data->a_size)
+	{
+		if (i != data->a_size)
+			tmp = (*(data->stack_a))->next;
+		free(*(data->stack_a));
+		(*(data->stack_a)) = tmp;
+	}
+	j = 0;
+	while (j++ < data->b_size)
+	{
+		if (j != data->b_size)
+			tmp = (*(data->stack_b))->next;
+		free(*(data->stack_b));
+		(*(data->stack_b)) = tmp;
+	}
+	return (NULL);
+}
+
+static int	err_return(int *input, t_data *data)
 {
 	if (input)
 		input = map_and_free(NULL, input);
-	if (stack_a)
-		stack_a = map_and_free(NULL, stack_a);
+	if (data)
+		data = free_data(data);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }
@@ -26,7 +51,7 @@ static int	err_return(int *input, t_pslist *stack_a)
 int	main(int argc, char *argv[])
 {
 	int			*input;
-	t_pslist	**stack_a;
+	t_data		*data;
 	char		*res;
 
 	if (argc < 2)
@@ -37,15 +62,15 @@ int	main(int argc, char *argv[])
 	input = map_and_free(compress(input, argc - 1), input);
 	if (!input)
 		return (err_return(NULL, NULL));
-	stack_a = stack_init(input, argc - 1);
-	if (!stack_a)
+	data = stack_init(input, argc - 1);
+	if (!data)
 		return (err_return(input, NULL));
-	res = solve(stack_a);
+	res = solve(data);
 	if (!res)
-		return (err_return(input, stack_a));
+		return (err_return(input, data));
 	res = map_and_free(optimize(res), res);
 	if (!res)
-		return (err_return(input, stack_a));
+		return (err_return(input, data));
 	print_result(res);
 	return (EXIT_SUCCESS);
 }

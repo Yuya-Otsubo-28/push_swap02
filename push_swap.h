@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/15 15:58:31 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:50:23 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ typedef	struct s_data {
 	int			b_size;
 	t_pslist	**stack_a;
 	t_pslist	**stack_b;
-} t_pslist ;
+} t_data ;
 
 #endif
