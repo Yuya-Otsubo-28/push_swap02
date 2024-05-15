@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/08 20:37:56 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:43:11 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	err_return(int *input, t_pslist *stack_a)
 int	main(int argc, char *argv[])
 {
 	int			*input;
-	t_pslist	*stack_a;
+	t_pslist	**stack_a;
 	char		*res;
 
 	if (argc < 2)
