@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/21 13:58:19 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/05/21 18:30:38 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,20 @@ char	*swap(t_pslist **stack, t_name name)
 
 char	*rotate(t_pslist **stack, t_name name)
 {
-	
+	(*stack)->is_top = false;
+	*stack = (*stack)->next;
+	(*stack)->is_top = true;
+	if (name == A)
+		return (ft_strdup("ra\n"));
+	return (ft_strdup("rb\n"));
+}
+
+char	*rev_rotate(t_pslist **stack, t_name name)
+{
+	(*stack)->is_top = false;
+	*stack = (*stack)->prev;
+	(*stack)->is_top = true;
+	if (name == A)
+		return (ft_strdup("ra\n"));
+	return (ft_strdup("rb\n"));
 }
