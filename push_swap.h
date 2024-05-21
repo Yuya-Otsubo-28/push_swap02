@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/21 13:35:27 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/05/21 13:49:01 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 # define true 1
 # define false 0
 
+# define A 1
+# define B -1
+
 typedef int t_bool;
+typedef int t_name;
 
 typedef struct s_pslist {
 	int				num;
