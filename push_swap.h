@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/21 13:49:01 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/05/21 19:34:52 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,13 @@ typedef	struct s_data {
 	t_pslist	**stack_a;
 	t_pslist	**stack_b;
 } t_data ;
+
+char	*swap(t_pslist **stack, t_name name);
+
+char	*rotate(t_pslist **stack, t_name name);
+
+char	*rev_rotate(t_pslist **stack, t_name name);
+
+char	*push(t_pslist **stack1, t_pslist **stack2, t_name name);
 
 #endif
