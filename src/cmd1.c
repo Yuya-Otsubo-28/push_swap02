@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/21 18:30:38 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:40:26 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,26 @@ char	*rev_rotate(t_pslist **stack, t_name name)
 	*stack = (*stack)->prev;
 	(*stack)->is_top = true;
 	if (name == A)
-		return (ft_strdup("ra\n"));
-	return (ft_strdup("rb\n"));
+		return (ft_strdup("rra\n"));
+	return (ft_strdup("rrb\n"));
+}
+
+char	*push(t_pslist **stack1, t_pslist **stack2, t_name name)
+{
+	t_pslist *element;
+
+	element = *stack1;
+	(*stack1)->next->is_top = true;
+	(*stack1)->next->prev = (*stack1)->prev;
+	(*stack1)->prev->next = (*stack1)->next;
+	*stack1 = (*stack1)->next;
+	element->next = *stack2;
+	element->prev = (*stack2)->prev;
+	element->prev->next = element;
+	(*stack2)->is_top = false;
+	(*stack2)->prev = element;
+	*stack2 = element;
+	if (name == A)
+		return (ft_strdup("pa\n"));
+	return (ft_strdup("pb\n"));
 }
