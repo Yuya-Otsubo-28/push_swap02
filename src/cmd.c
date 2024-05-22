@@ -6,13 +6,12 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 14:45:48 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:25:18 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "../push_swap.h"
-
-// strjoinを作り変えて、第2引数がNULLの時はエラーにする.
 
 char	*swap(t_pslist **stack, t_name name)
 {

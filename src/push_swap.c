@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/15 17:20:36 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:11:52 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char *argv[])
 {
 	int			*input;
 	t_data		*data;
-	char		*res;
+	t_list		*res;
 
 	if (argc < 2)
 		return (err_return(NULL, NULL));
@@ -62,13 +62,14 @@ int	main(int argc, char *argv[])
 	input = map_and_free(compress(input, argc - 1), input);
 	if (!input)
 		return (err_return(NULL, NULL));
-	data = stack_init(input, argc - 1);
+	data = data_init(input, argc - 1);
 	if (!data)
 		return (err_return(input, NULL));
-	res = solve(data);
+	solve(data, &res);
 	if (!res)
 		return (err_return(input, data));
-	res = map_and_free(optimize(res), res);
+	optimize(&res);
+	// optimize()内で、res listにNULLなどのエラーを見つけたらfree and NULL
 	if (!res)
 		return (err_return(input, data));
 	print_result(res);

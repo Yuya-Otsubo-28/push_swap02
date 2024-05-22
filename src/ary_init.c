@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ary_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/14 13:24:25 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/05/22 16:51:43 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,42 @@ t_bool	is_duplicated(int *ary, int size)
 	return (false);
 }
 
-int	*ary_init(int argc, char *argv[])
+static int	*arg_2_case(int argc, char *argv[], int *size)
+{
+	size_t	i;
+	int		*res;
+	char	**args;
+
+	args = ft_split(argv[1], ' ');
+	if (!args)
+		return (NULL);
+	*size = 0;
+	while (args[*size])
+		(*size)++;
+	res = (int *)malloc(sizeof(int) * *size);
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (i < *size)
+	{
+		if (!is_valid_arg(args[i]))
+			return (err_return(res));
+		res[i] = ft_atoi(args[i]);
+		i++;
+	}
+	if (is_duplicated(res, *size))
+		return (err_return(res));
+	return (res);
+}
+
+int	*ary_init(int argc, char *argv[], int *size)
 {
 	size_t	i;
 	int		*res;
 
+	if (argc == 2)
+		return (arg_2_case(argc, argv, size));
+	*size = argc - 1;
 	res = (int *)malloc(sizeof(int) * argc - 1);
 	if (!res)
 		return (NULL);
@@ -101,9 +132,10 @@ int	*ary_init(int argc, char *argv[])
 // int	main(void)
 // {
 // 	int	*res;
-// 	char *argv[] = {"this is the program name", "134", "134", "621", "431"};
+// 	char *argv[] = {"this is the program name", "421 134 621 431"};
+// 	// char *argv[] = {"this is the program name", "421", "134", "621", "431"};
 
-// 	res = ary_init(5, argv);
+// 	res = ary_init(2, argv);
 // 	if (!res)
 // 	{
 // 		printf("NULL returned\n"); fflush(stdout);

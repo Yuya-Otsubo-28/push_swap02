@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/21 19:34:52 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:50:20 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,11 @@ char	*rotate(t_pslist **stack, t_name name);
 char	*rev_rotate(t_pslist **stack, t_name name);
 
 char	*push(t_pslist **stack1, t_pslist **stack2, t_name name);
+
+t_data	*data_init(int *input, int size);
+
+int		*compress(int *input, int size);
+
+int		*ary_init(int argc, char *argv[], int *size);
 
 #endif
