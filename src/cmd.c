@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd1.c                                             :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/21 18:40:26 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:45:48 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,19 @@ char	*push(t_pslist **stack1, t_pslist **stack2, t_name name)
 	(*stack1)->next->prev = (*stack1)->prev;
 	(*stack1)->prev->next = (*stack1)->next;
 	*stack1 = (*stack1)->next;
-	element->next = *stack2;
-	element->prev = (*stack2)->prev;
-	element->prev->next = element;
-	(*stack2)->is_top = false;
-	(*stack2)->prev = element;
+	if (*stack2)
+	{
+		element->next = *stack2;
+		element->prev = (*stack2)->prev;
+		element->prev->next = element;
+		(*stack2)->is_top = false;
+		(*stack2)->prev = element;
+	}
+	else
+	{
+		element->next = element;
+		element->prev = element;
+	}
 	*stack2 = element;
 	if (name == A)
 		return (ft_strdup("pa\n"));
