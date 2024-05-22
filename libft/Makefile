@@ -45,7 +45,8 @@ SRCS = ft_atoi.c \
 		ft_strmapi.c \
 		ft_itoa.c \
 		ft_strtrim.c \
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c \
+		map_and_free.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I./
 CC = cc
