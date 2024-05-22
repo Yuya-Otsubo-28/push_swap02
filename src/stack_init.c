@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/22 15:16:40 by yuotsubo          #+#    #+#             */
+/*   Updated: 2024/05/22 15:16:40 by yuotsubo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "../push_swap.h"
 
-t_pslist	*pslist_new(int n)
+static t_pslist	*pslist_new(int n)
 {
 	t_pslist	*res;
 
@@ -15,7 +27,7 @@ t_pslist	*pslist_new(int n)
 	return (res);
 }
 
-t_pslist	*pslist_addback(t_pslist **lst, t_pslist *new)
+static t_pslist	*pslist_addback(t_pslist **lst, t_pslist *new)
 {
 	t_pslist	*head;
 
@@ -43,7 +55,7 @@ t_pslist	*pslist_addback(t_pslist **lst, t_pslist *new)
 	return (head);
 }
 
-t_pslist	**stack_init(int *input, int size)
+static t_pslist	**stack_init(int *input, int size)
 {
 	t_pslist	**res;
 	int			i;
