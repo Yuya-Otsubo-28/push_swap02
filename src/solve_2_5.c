@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:19:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 14:44:10 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:01:06 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	solve_2(t_pslist *stack, t_name name, t_list **res)
 		ft_lstadd_back(res, ft_lstnew(ft_strdup("")));
 }
 
-// ft_strdup()をそのままreturnしてるから、連結させる時のNULLチェクが必要
-// cmdを作って, map_and_free(ft_strjoin(res, swap(&stack, name)), res)などとする.
-
+// lstadd_back()でlstnew()がNULLだったらERRORにする？？
 
 void	solve_3(t_pslist *stack, t_name name, t_list **res)
 {
@@ -71,7 +69,8 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 	return (false);
 }
 
-char	*solve_4(t_pslist *stack, t_name name, t_list **res)
+// 最適化の余地あり 1 2 3 4, 2 1 3 4 など
+void	solve_4(t_pslist *stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
 
@@ -95,7 +94,7 @@ char	*solve_4(t_pslist *stack, t_name name, t_list **res)
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 }
 
-char	*solve_5(t_pslist *stack, t_name name, t_list **res)
+void	solve_5(t_pslist *stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
 
@@ -118,3 +117,27 @@ char	*solve_5(t_pslist *stack, t_name name, t_list **res)
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 }
+
+// int	main(int argc, char *argv[])
+// {
+// 	int		*input;
+// 	int		size;
+// 	t_data	*data;
+// 	t_list	*res;
+
+// 	input = ary_init(argc, argv, &size);
+// 	if (size == 1 || !size)
+// 		return (0);
+// 	input = map_and_free(compress(input, size), input);
+// 	data = data_init(input, size);
+// 	res = NULL;
+// 	solve_5(*(data->stack_a), A, &res);
+// 	while (1)
+// 	{
+// 		printf("%s", res->content);
+// 		res = res->next;
+// 		if (!res)
+// 			break ;
+// 	}
+// 	return (0);
+// }
