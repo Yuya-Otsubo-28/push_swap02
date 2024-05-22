@@ -115,6 +115,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-char	*map_and_free(char *res, char *for_free);
+void	*map_and_free(void *res, void *for_free);
 
 #endif
