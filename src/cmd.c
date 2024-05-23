@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 15:25:18 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:56:55 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ char	*swap(t_pslist **stack, t_name name)
 	tmp->is_top = true;
 	*stack = tmp;
 	if (name == A)
-		return (ft_strdup("sa\n"));
-	return (ft_strdup("sb\n"));
+		return ("sa");
+	return ("sb");
 }
 
 char	*rotate(t_pslist **stack, t_name name)
@@ -38,8 +38,8 @@ char	*rotate(t_pslist **stack, t_name name)
 	*stack = (*stack)->next;
 	(*stack)->is_top = true;
 	if (name == A)
-		return (ft_strdup("ra\n"));
-	return (ft_strdup("rb\n"));
+		return ("ra");
+	return ("rb");
 }
 
 char	*rev_rotate(t_pslist **stack, t_name name)
@@ -48,8 +48,8 @@ char	*rev_rotate(t_pslist **stack, t_name name)
 	*stack = (*stack)->prev;
 	(*stack)->is_top = true;
 	if (name == A)
-		return (ft_strdup("rra\n"));
-	return (ft_strdup("rrb\n"));
+		return ("rra");
+	return ("rrb");
 }
 
 char	*push(t_pslist **stack1, t_pslist **stack2, t_name name)
@@ -76,6 +76,6 @@ char	*push(t_pslist **stack1, t_pslist **stack2, t_name name)
 	}
 	*stack2 = element;
 	if (name == A)
-		return (ft_strdup("pa\n"));
-	return (ft_strdup("pb\n"));
+		return ("pa");
+	return ("pb");
 }
