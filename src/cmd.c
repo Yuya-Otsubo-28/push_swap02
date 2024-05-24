@@ -6,11 +6,10 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/23 14:56:55 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/05/24 16:48:09 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "../push_swap.h"
 
 char	*swap(t_pslist **stack, t_name name)

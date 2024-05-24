@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:19:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/23 14:54:39 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/05/24 17:07:35 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 		return (true);
 	return (false);
 }
+
+//4と5のケースが再帰のゴールになるので、ここで最適化させて作るべき
 
 // 最適化の余地あり 1 2 3 4, 2 1 3 4 など
 void	solve_4(t_pslist *stack, t_name name, t_list **res)
