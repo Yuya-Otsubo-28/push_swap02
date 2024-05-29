@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve_2_5.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:19:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 17:01:06 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:07:35 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	solve_2(t_pslist *stack, t_name name, t_list **res)
 	if (head > tail)
 		ft_lstadd_back(res, ft_lstnew(swap(&stack, name)));
 	else
-		ft_lstadd_back(res, ft_lstnew(ft_strdup("")));
+		ft_lstadd_back(res, ft_lstnew(""));
 }
 
 // lstadd_back()でlstnew()がNULLだったらERRORにする？？
@@ -31,7 +31,7 @@ void	solve_2(t_pslist *stack, t_name name, t_list **res)
 void	solve_3(t_pslist *stack, t_name name, t_list **res)
 {
 	if (stack->num < stack->next->num && stack->next->num < stack->prev->num)
-		ft_lstadd_back(res, ft_lstnew(ft_strdup("")));
+		ft_lstadd_back(res, ft_lstnew(""));
 	if (stack->num < stack->next->num && stack->next->num > stack->prev->num \
 		&& stack->num < stack->prev->num)
 	{
@@ -68,6 +68,8 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 		return (true);
 	return (false);
 }
+
+//4と5のケースが再帰のゴールになるので、ここで最適化させて作るべき
 
 // 最適化の余地あり 1 2 3 4, 2 1 3 4 など
 void	solve_4(t_pslist *stack, t_name name, t_list **res)

@@ -6,11 +6,10 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:46:58 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/29 17:18:30 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:20:47 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "../push_swap.h"
 
 static void	under_five_case(t_pslist *stack, int size, t_name name, t_list **res)

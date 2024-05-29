@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 16:50:20 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:56:16 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "./libft/libft.h"
 
 # define true 1
 # define false 0
@@ -54,5 +55,15 @@ t_data	*data_init(int *input, int size);
 int		*compress(int *input, int size);
 
 int		*ary_init(int argc, char *argv[], int *size);
+
+void	solve_2(t_pslist *stack, t_name name, t_list **res);
+
+void	solve_3(t_pslist *stack, t_name name, t_list **res);
+
+void	solve_4(t_pslist *stack, t_name name, t_list **res);
+
+void	solve_5(t_pslist *stack, t_name name, t_list **res);
+
+t_bool	is_sorted(t_pslist *stack);
 
 #endif

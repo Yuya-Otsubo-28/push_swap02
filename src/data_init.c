@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "../push_swap.h"
 
 static t_pslist	*pslist_new(int n)
