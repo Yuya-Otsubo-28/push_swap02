@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:46:58 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/29 17:20:47 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:17:11 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ static int	recusive_solve(t_pslist **stack_a, t_pslist **stack_b, t_list **res, 
 
 	if (!stack_b && is_sorted(stack_a))
 		return (0);
+	
 	// if (!stack_b)
 	// 	middle = divide_half(stack_a, stack_b, A);
 	// else
@@ -141,5 +142,5 @@ void	solve(t_pslist *stack_a, t_list **res)
 	}
 	stack_b = NULL;
 	
-	recusive_solve(stack_a, stack_b, res);
+	recusive_solve(&stack_a, &stack_b, res);
 }
