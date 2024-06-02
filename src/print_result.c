@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:38:14 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 16:41:02 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:03:08 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void	print_result(t_list *res)
 	t_list *node;
 
 	node = res;
-	while (!node)
+	while (node)
 	{
-		ft_putendl_fd(node->content, STDOUT_FILENO);
+		if (((char *)(node->content))[0])
+			ft_putendl_fd(node->content, STDOUT_FILENO);
 		node = node->next;
 	}
 }

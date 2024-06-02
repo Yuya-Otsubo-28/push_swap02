@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:46:58 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/30 19:17:11 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 16:35:03 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,59 @@ void	solve(t_pslist *stack_a, t_list **res)
 	}
 	stack_b = NULL;
 	
-	recusive_solve(&stack_a, &stack_b, res);
+	// recusive_solve(&stack_a, &stack_b, res);
 }
+
+// int	main(int argc, char *argv[])
+// {
+// 	int	*ary_res;
+// 	int	*comp_res;
+// 	t_pslist **stack_a;
+// 	int	size;
+
+// 	ary_res = ary_init(argc, argv, &size);
+// 	printf("***********************\n");
+// 	printf("\ttest: ary_init\n\n");
+// 	if (!ary_res)
+// 	{
+// 		printf("NULL returned\n"); fflush(stdout);
+// 		return (0);
+// 	}
+// 	for (int i = 0; i < size; i++)
+// 	{
+// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
+// 	}
+// 	printf("size: %d\n", size);
+
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: compress\n\n");
+// 	comp_res = compress(ary_res, size);
+// 	for (int i = 0; i < size; i++)
+// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
+
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: stack_init\n\n");
+// 	stack_a = stack_init(comp_res, size);
+// 	for (t_pslist *node = *stack_a; ; node = node->next)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->next->is_top)
+// 			break ;
+// 		printf("< next >\n");
+// 	}
+// 	printf("\n");
+// 	for (t_pslist *node = *stack_a; ; node = node->prev)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->prev->is_top)
+// 			break ;
+// 		printf("< prev >\n");
+// 	}
+
+
+// 	free(comp_res);
+// 	free(ary_res);
+// 	return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve_2_5.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:19:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/24 17:07:35 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/02 17:03:37 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	solve_2(t_pslist *stack, t_name name, t_list **res)
 		ft_lstadd_back(res, ft_lstnew(swap(&stack, name)));
 	else
 		ft_lstadd_back(res, ft_lstnew(""));
+	// printf("res: %s\n", (*res)->content);
 }
 
 // lstadd_back()でlstnew()がNULLだったらERRORにする？？
@@ -120,26 +121,75 @@ void	solve_5(t_pslist *stack, t_name name, t_list **res)
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 }
 
+static void	under_five_case(t_pslist *stack, int size, t_name name, t_list **res)
+{
+	if (size == 2)
+		solve_2(stack, name, res);
+	else if (size == 3)
+		solve_3(stack, name, res);
+	else if (size == 4)
+		solve_4(stack, name, res);
+	else if (size == 5)
+		solve_5(stack, name, res);
+	return ;
+}
+
 // int	main(int argc, char *argv[])
 // {
-// 	int		*input;
-// 	int		size;
-// 	t_data	*data;
-// 	t_list	*res;
+// 	int	*ary_res;
+// 	int	*comp_res;
+// 	t_pslist **stack_a;
+// 	t_list *res;
+// 	int	size;
 
-// 	input = ary_init(argc, argv, &size);
-// 	if (size == 1 || !size)
-// 		return (0);
-// 	input = map_and_free(compress(input, size), input);
-// 	data = data_init(input, size);
-// 	res = NULL;
-// 	solve_5(*(data->stack_a), A, &res);
-// 	while (1)
+// 	ary_res = ary_init(argc, argv, &size);
+// 	printf("***********************\n");
+// 	printf("\ttest: ary_init\n\n");
+// 	if (!ary_res)
 // 	{
-// 		printf("%s", res->content);
-// 		res = res->next;
-// 		if (!res)
-// 			break ;
+// 		printf("NULL returned\n"); fflush(stdout);
+// 		return (0);
 // 	}
+// 	for (int i = 0; i < size; i++)
+// 	{
+// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
+// 	}
+// 	printf("size: %d\n", size);
+
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: compress\n\n");
+// 	comp_res = compress(ary_res, size);
+// 	for (int i = 0; i < size; i++)
+// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
+
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: stack_init\n\n");
+// 	stack_a = stack_init(comp_res, size);
+// 	for (t_pslist *node = *stack_a; ; node = node->next)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->next->is_top)
+// 			break ;
+// 		printf("< next >\n");
+// 	}
+// 	printf("\n");
+// 	for (t_pslist *node = *stack_a; ; node = node->prev)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->prev->is_top)
+// 			break ;
+// 		printf("< prev >\n");
+// 	}
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: under_five_case\n\n");
+// 	res = NULL;
+// 	under_five_case(*stack_a, size, A, &res);
+// 	print_result(res);
+
+// 	free(comp_res);
+// 	free(ary_res);
 // 	return (0);
 // }

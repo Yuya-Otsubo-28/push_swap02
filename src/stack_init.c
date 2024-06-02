@@ -125,7 +125,6 @@ t_pslist	**stack_init(int *input, int size)
 // 		printf("< prev >\n");
 // 	}
 
-
 // 	free(comp_res);
 // 	free(ary_res);
 // 	return (0);
