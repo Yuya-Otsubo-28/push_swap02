@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/24 16:56:16 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:05:12 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,28 @@ typedef struct s_pslist {
 	struct s_pslist	*prev;
 } t_pslist ;
 
-typedef	struct s_data {
-	int			total_size;
-	int			a_size;
-	int			b_size;
-	t_pslist	**stack_a;
-	t_pslist	**stack_b;
-} t_data ;
+char		*swap(t_pslist **stack, t_name name);
 
-char	*swap(t_pslist **stack, t_name name);
+char		*rotate(t_pslist **stack, t_name name);
 
-char	*rotate(t_pslist **stack, t_name name);
+char		*rev_rotate(t_pslist **stack, t_name name);
 
-char	*rev_rotate(t_pslist **stack, t_name name);
+char		*push(t_pslist **stack1, t_pslist **stack2, t_name name);
 
-char	*push(t_pslist **stack1, t_pslist **stack2, t_name name);
+t_pslist	**stack_init(int *input, int size);
 
-t_data	*data_init(int *input, int size);
+int			*compress(int *input, int size);
 
-int		*compress(int *input, int size);
+int			*ary_init(int argc, char *argv[], int *size);
 
-int		*ary_init(int argc, char *argv[], int *size);
+void		solve_2(t_pslist *stack, t_name name, t_list **res);
 
-void	solve_2(t_pslist *stack, t_name name, t_list **res);
+void		solve_3(t_pslist *stack, t_name name, t_list **res);
 
-void	solve_3(t_pslist *stack, t_name name, t_list **res);
+void		solve_4(t_pslist *stack, t_name name, t_list **res);
 
-void	solve_4(t_pslist *stack, t_name name, t_list **res);
+void		solve_5(t_pslist *stack, t_name name, t_list **res);
 
-void	solve_5(t_pslist *stack, t_name name, t_list **res);
-
-t_bool	is_sorted(t_pslist *stack);
+t_bool		is_sorted(t_pslist *stack);
 
 #endif

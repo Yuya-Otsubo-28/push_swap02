@@ -54,7 +54,7 @@ static t_pslist	*pslist_addback(t_pslist **lst, t_pslist *new)
 	return (head);
 }
 
-static t_pslist	**stack_init(int *input, int size)
+t_pslist	**stack_init(int *input, int size)
 {
 	t_pslist	**res;
 	int			i;
@@ -77,42 +77,56 @@ static t_pslist	**stack_init(int *input, int size)
 	return (res);
 }
 
-t_data	*data_init(int *input, int size)
-{
-	t_data	*res;
-
-	res = (t_data *)malloc(sizeof(t_data));
-	if (!res)
-		return (NULL);
-	res->stack_a = stack_init(input, size);
-	if (!res->stack_a)
-	{
-		free(res);
-		return (NULL);
-	}
-	res->stack_b = NULL;
-	res->total_size = size;
-	res->a_size = size;
-	res->b_size = 0;
-	return (res);
-}
-
-// int	main(void)
+// int	main(int argc, char *argv[])
 // {
-// 	int			input[] = {12, 234, 45, 56};
-// 	int			size = 4;
-// 	t_pslist	**res;
-// 	t_bool		flag = false;
+// 	int	*ary_res;
+// 	int	*comp_res;
+// 	t_pslist **stack_a;
+// 	int	size;
 
-// 	res = stack_init(input, size);
-// 	while (1)
+// 	ary_res = ary_init(argc, argv, &size);
+// 	printf("***********************\n");
+// 	printf("\ttest: ary_init\n\n");
+// 	if (!ary_res)
 // 	{
-// 		if ((*res)->is_top && flag)
-// 			break ;
-// 		if ((*res)->is_top)
-// 			flag = true;
-// 		printf("res: %d\n", (*res)->num);
-// 		*res = (*res)->prev;
+// 		printf("NULL returned\n"); fflush(stdout);
+// 		return (0);
 // 	}
+// 	for (int i = 0; i < size; i++)
+// 	{
+// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
+// 	}
+// 	printf("size: %d\n", size);
+
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: compress\n\n");
+// 	comp_res = compress(ary_res, size);
+// 	for (int i = 0; i < size; i++)
+// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
+
+
+// 	printf("***********************\n\n");
+// 	printf("\ttest: stack_init\n\n");
+// 	stack_a = stack_init(comp_res, size);
+// 	for (t_pslist *node = *stack_a; ; node = node->next)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->next->is_top)
+// 			break ;
+// 		printf("< next >\n");
+// 	}
+// 	printf("\n");
+// 	for (t_pslist *node = *stack_a; ; node = node->prev)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->prev->is_top)
+// 			break ;
+// 		printf("< prev >\n");
+// 	}
+
+
+// 	free(comp_res);
+// 	free(ary_res);
 // 	return (0);
 // }
