@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_2_5.c                                        :+:      :+:    :+:   */
+/*   sort_2_5.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:19:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 17:03:37 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:07:09 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../push_swap.h"
 
-void	solve_2(t_pslist *stack, t_name name, t_list **res)
+void	sort_2(t_pslist *stack, t_name name, t_list **res)
 {
 	int		head;
 	int 	tail;
@@ -29,7 +29,7 @@ void	solve_2(t_pslist *stack, t_name name, t_list **res)
 
 // lstadd_back()でlstnew()がNULLだったらERRORにする？？
 
-void	solve_3(t_pslist *stack, t_name name, t_list **res)
+void	sort_3(t_pslist *stack, t_name name, t_list **res)
 {
 	if (stack->num < stack->next->num && stack->next->num < stack->prev->num)
 		ft_lstadd_back(res, ft_lstnew(""));
@@ -73,7 +73,7 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 //4と5のケースが再帰のゴールになるので、ここで最適化させて作るべき
 
 // 最適化の余地あり 1 2 3 4, 2 1 3 4 など
-void	solve_4(t_pslist *stack, t_name name, t_list **res)
+void	sort_4(t_pslist *stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
 
@@ -92,12 +92,12 @@ void	solve_4(t_pslist *stack, t_name name, t_list **res)
 		while (stack->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rotate(&stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(&stack, &sub_stack, name * -1)));
-	solve_2(stack, name, res);
+	sort_2(stack, name, res);
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 }
 
-void	solve_5(t_pslist *stack, t_name name, t_list **res)
+void	sort_5(t_pslist *stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
 
@@ -116,22 +116,9 @@ void	solve_5(t_pslist *stack, t_name name, t_list **res)
 		while (stack->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rotate(&stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(&stack, &sub_stack, name * -1)));
-	solve_3(stack, name, res);
+	sort_3(stack, name, res);
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, &stack, name)));
-}
-
-static void	under_five_case(t_pslist *stack, int size, t_name name, t_list **res)
-{
-	if (size == 2)
-		solve_2(stack, name, res);
-	else if (size == 3)
-		solve_3(stack, name, res);
-	else if (size == 4)
-		solve_4(stack, name, res);
-	else if (size == 5)
-		solve_5(stack, name, res);
-	return ;
 }
 
 // int	main(int argc, char *argv[])

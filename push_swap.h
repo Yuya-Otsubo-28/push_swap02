@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 16:41:16 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:10:20 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int			*compress(int *input, int size);
 
 int			*ary_init(int argc, char *argv[], int *size);
 
-void		solve(t_pslist *stack_a, t_list **res);
+void		sort(t_pslist *stack_a, t_list **res);
 
-void		solve_2(t_pslist *stack, t_name name, t_list **res);
+void		sort_2(t_pslist *stack, t_name name, t_list **res);
 
-void		solve_3(t_pslist *stack, t_name name, t_list **res);
+void		sort_3(t_pslist *stack, t_name name, t_list **res);
 
-void		solve_4(t_pslist *stack, t_name name, t_list **res);
+void		sort_4(t_pslist *stack, t_name name, t_list **res);
 
-void		solve_5(t_pslist *stack, t_name name, t_list **res);
+void		sort_5(t_pslist *stack, t_name name, t_list **res);
 
 t_bool		is_sorted(t_pslist *stack);
 

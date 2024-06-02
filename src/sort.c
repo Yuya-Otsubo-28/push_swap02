@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve.c                                            :+:      :+:    :+:   */
+/*   sort.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:46:58 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 16:35:03 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:09:00 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	under_five_case(t_pslist *stack, int size, t_name name, t_list **res)
 {
 	if (size == 2)
-		solve_2(stack, name, res);
+		sort_2(stack, name, res);
 	else if (size == 3)
-		solve_3(stack, name, res);
+		sort_3(stack, name, res);
 	else if (size == 4)
-		solve_4(stack, name, res);
+		sort_4(stack, name, res);
 	else if (size == 5)
-		solve_5(stack, name, res);
+		sort_5(stack, name, res);
 	return ;
 }
 
@@ -93,7 +93,7 @@ static int	divide_half(t_pslist **main_stack, t_pslist **sub_stack, t_name name)
 	return (middle);
 }
 
-static int	recusive_solve(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int pre_size)
+static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int pre_size)
 {
 	int	middle;
 	int	b_size;
@@ -121,15 +121,15 @@ static int	recusive_solve(t_pslist **stack_a, t_pslist **stack_b, t_list **res, 
 		*stack_b = NULL;
 		return (b_size);
 	}
-	recusive_solve(stack_a, stack_b, res, b_size);
+	recusive_sort(stack_a, stack_b, res, b_size);
 	j = 0;
 	while (pushed_size + j++ < pre_size)
 		push(stack_a, stack_b, B);
-	recusive_solve(stack_a, stack_b, res, j);
+	recusive_sort(stack_a, stack_b, res, j);
 	return ;
 }
 
-void	solve(t_pslist *stack_a, t_list **res)
+void	sort(t_pslist *stack_a, t_list **res)
 {
 	int			a_size;
 	t_pslist	*stack_b;
@@ -142,59 +142,65 @@ void	solve(t_pslist *stack_a, t_list **res)
 	}
 	stack_b = NULL;
 	
-	// recusive_solve(&stack_a, &stack_b, res);
+	// recusive_sort(&stack_a, &stack_b, res);
 }
 
-// int	main(int argc, char *argv[])
-// {
-// 	int	*ary_res;
-// 	int	*comp_res;
-// 	t_pslist **stack_a;
-// 	int	size;
+int	main(int argc, char *argv[])
+{
+	int	*ary_res;
+	int	*comp_res;
+	t_pslist **stack_a;
+	t_list *res;
+	int	size;
 
-// 	ary_res = ary_init(argc, argv, &size);
-// 	printf("***********************\n");
-// 	printf("\ttest: ary_init\n\n");
-// 	if (!ary_res)
-// 	{
-// 		printf("NULL returned\n"); fflush(stdout);
-// 		return (0);
-// 	}
-// 	for (int i = 0; i < size; i++)
-// 	{
-// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
-// 	}
-// 	printf("size: %d\n", size);
-
-
-// 	printf("***********************\n\n");
-// 	printf("\ttest: compress\n\n");
-// 	comp_res = compress(ary_res, size);
-// 	for (int i = 0; i < size; i++)
-// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
+	ary_res = ary_init(argc, argv, &size);
+	printf("***********************\n");
+	printf("\ttest: ary_init\n\n");
+	if (!ary_res)
+	{
+		printf("NULL returned\n"); fflush(stdout);
+		return (0);
+	}
+	for (int i = 0; i < size; i++)
+	{
+		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
+	}
+	printf("size: %d\n", size);
 
 
-// 	printf("***********************\n\n");
-// 	printf("\ttest: stack_init\n\n");
-// 	stack_a = stack_init(comp_res, size);
-// 	for (t_pslist *node = *stack_a; ; node = node->next)
-// 	{
-// 		printf("list content: %d\n", node->num);
-// 		if (node->next->is_top)
-// 			break ;
-// 		printf("< next >\n");
-// 	}
-// 	printf("\n");
-// 	for (t_pslist *node = *stack_a; ; node = node->prev)
-// 	{
-// 		printf("list content: %d\n", node->num);
-// 		if (node->prev->is_top)
-// 			break ;
-// 		printf("< prev >\n");
-// 	}
+	printf("***********************\n\n");
+	printf("\ttest: compress\n\n");
+	comp_res = compress(ary_res, size);
+	for (int i = 0; i < size; i++)
+		printf("comp_res[%d]: %d\n", i, comp_res[i]);
 
 
-// 	free(comp_res);
-// 	free(ary_res);
-// 	return (0);
-// }
+	printf("***********************\n\n");
+	printf("\ttest: stack_init\n\n");
+	stack_a = stack_init(comp_res, size);
+	for (t_pslist *node = *stack_a; ; node = node->next)
+	{
+		printf("list content: %d\n", node->num);
+		if (node->next->is_top)
+			break ;
+		printf("< next >\n");
+	}
+	printf("\n");
+	for (t_pslist *node = *stack_a; ; node = node->prev)
+	{
+		printf("list content: %d\n", node->num);
+		if (node->prev->is_top)
+			break ;
+		printf("< prev >\n");
+	}
+
+	printf("***********************\n\n");
+	printf("\ttest: sort\n\n");
+	sort(stack_a, &res);
+
+	print_result(res);
+
+	free(comp_res);
+	free(ary_res);
+	return (0);
+}
