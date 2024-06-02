@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 15:06:14 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:38:39 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,20 +139,18 @@ int	*ary_init(int argc, char *argv[], int *len)
 - outrange of int OK (NO Leaks, return NULL)
 */
 
-// int	main(void)
+// int	main(int argc, char *argv[])
 // {
 // 	int	*res;
-// 	// char *argv[] = {"this is the program name", "421 134 621 431"};
 // 	int	size;
-// 	char *argv[] = {"this is the program name", "-2147483649", "134", "621", "431"};
 
-// 	res = ary_init(5, argv, &size);
+// 	res = ary_init(argc, argv, &size);
 // 	if (!res)
 // 	{
 // 		printf("NULL returned\n"); fflush(stdout);
 // 		return (0);
 // 	}
-// 	for (int i = 0; i < 4; i++)
+// 	for (int i = 0; i < size; i++)
 // 	{
 // 		printf("%d\n", res[i]); fflush(stdout);
 // 	}

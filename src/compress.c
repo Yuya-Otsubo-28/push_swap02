@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:38:48 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 15:17:56 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:51:41 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,32 @@ int	*compress(int *input, int size)
 	return (res);
 }
 
-// int	main(void)
+// int	main(int argc, char *argv[])
 // {
-// 	int	input[] = {123, INT_MAX, INT_MIN, -3};
-// 	int	size = 4;
-// 	int	*res;
+// 	int	*ary_res;
+// 	int	*comp_res;
+// 	int	size;
 
-// 	res = compress(input, size);
+// 	ary_res = ary_init(argc, argv, &size);
+// 	printf("***********************\n");
+// 	printf("\ttest: ary_init\n\n");
+// 	if (!ary_res)
+// 	{
+// 		printf("NULL returned\n"); fflush(stdout);
+// 		return (0);
+// 	}
 // 	for (int i = 0; i < size; i++)
-// 		printf("%d\n", res[i]);
-// 	free(res);
+// 	{
+// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
+// 	}
+// 	printf("size: %d\n", size);
+// 	printf("***********************\n\n");
+// 	printf("\ttest: compress\n\n");
+// 	comp_res = compress(ary_res, size);
+// 	for (int i = 0; i < size; i++)
+// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
+// 	printf("***********************\n");
+// 	free(comp_res);
+// 	free(ary_res);
 // 	return (0);
 // }
