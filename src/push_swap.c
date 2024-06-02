@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/24 16:48:49 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/02 14:53:39 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,19 @@ static int	err_return(int *input, t_data *data)
 int	main(int argc, char *argv[])
 {
 	int			*input;
+	int			*input_len;
 	t_data		*data;
 	t_list		*res;
 
 	if (argc < 2)
 		return (err_return(NULL, NULL));
-	input = ary_init(argc, argv);
+	input = ary_init(argc, argv, &input_len);
 	if (!input)
 		return (err_return(NULL, NULL));
-	input = map_and_free(compress(input, argc - 1), input);
+	input = map_and_free(compress(input, input_len), input);
 	if (!input)
 		return (err_return(NULL, NULL));
-	data = data_init(input, argc - 1);
+	data = data_init(input, input_len);
 	if (!data)
 		return (err_return(input, NULL));
 	solve(data, &res);

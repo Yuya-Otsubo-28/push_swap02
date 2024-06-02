@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 16:51:43 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:06:14 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_bool	is_duplicated(int *ary, int size)
 	return (false);
 }
 
-static int	*arg_2_case(int argc, char *argv[], int *size)
+static int	*arg_2_case(char *argv[], int *size)
 {
 	size_t	i;
 	int		*res;
@@ -93,7 +93,7 @@ static int	*arg_2_case(int argc, char *argv[], int *size)
 	if (!res)
 		return (NULL);
 	i = 0;
-	while (i < *size)
+	while (i < (size_t)*size)
 	{
 		if (!is_valid_arg(args[i]))
 			return (err_return(res));
@@ -105,14 +105,17 @@ static int	*arg_2_case(int argc, char *argv[], int *size)
 	return (res);
 }
 
-int	*ary_init(int argc, char *argv[], int *size)
+// 'len' is for counting length of int array.
+// If input is a string, 'argc' shouldn't use as length of int array. (beacause 'argc' is always 2 then.)
+
+int	*ary_init(int argc, char *argv[], int *len)
 {
 	size_t	i;
 	int		*res;
 
 	if (argc == 2)
-		return (arg_2_case(argc, argv, size));
-	*size = argc - 1;
+		return (arg_2_case(argv, len));
+	*len = argc - 1;
 	res = (int *)malloc(sizeof(int) * argc - 1);
 	if (!res)
 		return (NULL);
@@ -129,13 +132,21 @@ int	*ary_init(int argc, char *argv[], int *size)
 	return (res);
 }
 
+/*	tests
+- basic input OK
+- input as a string OK
+- duplicated input OK (NO Leaks, return NULL)
+- outrange of int OK (NO Leaks, return NULL)
+*/
+
 // int	main(void)
 // {
 // 	int	*res;
-// 	char *argv[] = {"this is the program name", "421 134 621 431"};
-// 	// char *argv[] = {"this is the program name", "421", "134", "621", "431"};
+// 	// char *argv[] = {"this is the program name", "421 134 621 431"};
+// 	int	size;
+// 	char *argv[] = {"this is the program name", "-2147483649", "134", "621", "431"};
 
-// 	res = ary_init(2, argv);
+// 	res = ary_init(5, argv, &size);
 // 	if (!res)
 // 	{
 // 		printf("NULL returned\n"); fflush(stdout);
@@ -145,6 +156,7 @@ int	*ary_init(int argc, char *argv[], int *size)
 // 	{
 // 		printf("%d\n", res[i]); fflush(stdout);
 // 	}
+// 	printf("size: %d\n", size);
 // 	free(res);
 // 	return (0);
 // }
