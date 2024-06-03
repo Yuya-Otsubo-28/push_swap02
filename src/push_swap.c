@@ -6,32 +6,56 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:39:56 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:11:49 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_pslist *free_stack(t_pslist *stack_a)
+t_pslist *free_stack(t_pslist *stack)
 {
-	t_pslist	*tmp;
+	int			stack_size;
+	t_pslist	*next;
+	int			i;
 
-	while (stack_a)
+	stack_size = get_stack_size(stack);
+	i = 0;
+	while (i++ < stack_size)
 	{
-		tmp = stack_a->next;
-		free(stack_a);
-		stack_a = NULL;
-		stack_a = tmp;
+		next = stack->next;
+		free(stack);
+		stack = next;
 	}
 	return (NULL);
 }
 
-static int	err_return(int *input, t_pslist *stack_a)
+static void	free_list(t_list *res)
+{
+	t_list	*tmp;
+
+	while (res)
+	{
+		tmp = res->next;
+		free(res);
+		res = tmp;
+	}
+}
+
+static void	free_all(int *input, t_pslist **stack_a, t_list *res)
 {
 	if (input)
-		input = map_and_free(NULL, input);
+		free(input);
+	if (*stack_a)
+		free_stack(*stack_a);
 	if (stack_a)
-		stack_a = free_stack(stack_a);
+		free(stack_a);
+	if (res)
+		free_list(res);
+}
+
+static int	err_return(int *input, t_pslist **stack_a, t_list *res)
+{
+	free_all(input, stack_a, res);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }
@@ -43,26 +67,27 @@ int	main(int argc, char *argv[])
 	t_pslist	**stack_a;
 	t_list		*res;
 
+	res = NULL;
 	if (argc < 2)
-		return (err_return(NULL, NULL));
+		return (err_return(NULL, NULL, NULL));
 	input = ary_init(argc, argv, &input_len);
 	if (!input)
-		return (err_return(NULL, NULL));
+		return (err_return(NULL, NULL, NULL));
 	input = map_and_free(compress(input, input_len), input);
 	if (!input)
-		return (err_return(NULL, NULL));
+		return (err_return(NULL, NULL, NULL));
 	stack_a = stack_init(input, input_len);
 	if (!stack_a)
-		return (err_return(input, NULL));
+		return (err_return(input, NULL, NULL));
 	sort(stack_a, &res);
 	if (!res)
-		return (err_return(input, *stack_a));
+		return (err_return(input, stack_a, NULL));
 	// optimize(&res);
 	// optimize()内で、res listにNULLなどのエラーを見つけたらfree and NULL
 	// if (!res)
 		// return (err_return(input, stack_a));
 	if (!print_result(res))
-		return (err_return(input, *stack_a));
-	free(input);
+		return (err_return(input, stack_a, res));
+	free_all(input, stack_a, res);
 	return (EXIT_SUCCESS);
 }

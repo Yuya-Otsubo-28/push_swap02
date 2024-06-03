@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:40:27 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:17:06 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,20 @@ int			*ary_init(int argc, char *argv[], int *size);
 
 void		sort(t_pslist **stack_a, t_list **res);
 
-void		sort_2(t_pslist *stack, t_name name, t_list **res);
+void		sort_2(t_pslist **stack, t_name name, t_list **res);
 
-void		sort_3(t_pslist *stack, t_name name, t_list **res);
+void		sort_3(t_pslist **stack, t_name name, t_list **res);
 
-void		sort_4(t_pslist *stack, t_name name, t_list **res);
+void		sort_4(t_pslist **stack, t_name name, t_list **res);
 
-void		sort_5(t_pslist *stack, t_name name, t_list **res);
+void		sort_5(t_pslist **stack, t_name name, t_list **res);
 
 t_bool		is_sorted(t_pslist *stack);
 
 t_bool		print_result(t_list *res);
+
+int			get_stack_size(t_pslist *stack);
+
+t_pslist	*free_stack(t_pslist *stack_a);
 
 #endif
