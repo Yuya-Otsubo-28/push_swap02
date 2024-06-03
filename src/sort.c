@@ -75,53 +75,101 @@ static int	get_middle(t_pslist *stack)
 	return ((max - min) / 2);
 }
 
-static int	divide_half(t_pslist **main_stack, t_pslist **sub_stack, t_name name)
+// static int	divide_half(t_pslist **main_stack, t_pslist **sub_stack, t_name name)
+// {
+// 	int	middle;
+	
+// 	middle = get_middle(*main_stack);
+// 	while (1)
+// 	{
+// 		if ((*main_stack)->next->is_top)
+// 			break ;
+// 		if ((*main_stack)->num < middle)
+// 			push(main_stack, sub_stack, name * -1);
+// 		else
+// 			rotate(main_stack, name);
+// 		*main_stack = (*main_stack)->next;
+// 	}
+// 	return (middle);
+// }
+
+static int	make_stack_b(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int a_size)
+{
+	int			middle;
+	int			i;
+
+	middle = a_size / 2;
+	i = 0;
+	while (i++ < a_size)
+	{
+		if ((*stack_a)->num < middle)
+			ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
+		else
+			ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
+	}
+	return (i);
+}
+
+static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 {
 	int	middle;
-	
-	middle = get_middle(*main_stack);
-	while (1)
+	int	b_size;
+	int	i;
+	int	count;
+
+	middle = get_middle(*stack_b);
+	b_size = get_stack_size(*stack_b);
+	i = 0;
+	count = 0;
+	while (i++ < b_size)
 	{
-		if ((*main_stack)->next->is_top)
-			break ;
-		if ((*main_stack)->num < middle)
-			push(main_stack, sub_stack, name * -1);
+		if ((*stack_b)->num < middle)
+			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
 		else
-			rotate(main_stack, name);
-		*main_stack = (*main_stack)->next;
+		{
+			res++;
+			ft_lstadd_back(res, ft_lstnew(rotate(stack_b, B)));
+		}
 	}
-	return (middle);
+	return (count);
+}
+
+static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int b_size)
+{
+	int	i;
+
+	under_five_case(*stack_b, b_size, B, res);
+	i = 0;
+	while (i++ < b_size)
+	{
+		ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
+		ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
+	}
+	*stack_b = NULL;
+	return (b_size);
 }
 
 static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int pre_size)
 {
-	int	middle;
 	int	b_size;
-	int	pushed_size;
+	int	sorted_size;
 	int	i;
-	int	j;
 
-	if (!stack_b && is_sorted(stack_a))
+	if (!stack_b && is_sorted(*stack_a))
 		return (0);
 	b_size = get_stack_size(*stack_b);
 	if (b_size <= 5)
-	{
-		under_five_case(*stack_b, b_size, B, res);
-		i = 0;
-		while (i++ < b_size)
-		{
-			push(stack_b, stack_a, A);
-			rotate(stack_a, A);
-		}
-		*stack_b = NULL;
-		return (b_size);
-	}
-	recusive_sort(stack_a, stack_b, res, b_size);
-	j = 0;
-	while (pushed_size + j++ < pre_size)
-		push(stack_a, stack_b, B);
-	recusive_sort(stack_a, stack_b, res, j);
-	return ;
+		return (proc_of_leaf(stack_a, stack_b, res, b_size));
+	if (!b_size)
+		b_size = make_stack_b(stack_a, stack_b, res, pre_size);
+	else
+		b_size = push_half_to_a(stack_a, stack_b, res);
+	sorted_size = recusive_sort(stack_a, stack_b, res, b_size);
+	i = 0;
+	while (sorted_size + i++ < pre_size)
+		ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
+	recusive_sort(stack_a, stack_b, res, i);
+	return (pre_size);
 }
 
 void	sort(t_pslist **stack_a, t_list **res)
@@ -133,10 +181,12 @@ void	sort(t_pslist **stack_a, t_list **res)
 	if (a_size <= 5)
 	{
 		under_five_case(*stack_a, a_size, A, res);
+		ft_lstadd_back(res, ft_lstnew("end"));
 		return ;
 	}
 	stack_b = NULL;
 	recusive_sort(stack_a, &stack_b, res, a_size);
+	ft_lstadd_back(res, ft_lstnew("end"));
 }
 
 // int	main(int argc, char *argv[])

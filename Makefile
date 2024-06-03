@@ -16,7 +16,7 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) $(OBJS) -o $@
 
 %.o: %.c

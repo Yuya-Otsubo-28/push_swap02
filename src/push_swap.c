@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 16:39:15 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:39:56 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	err_return(int *input, t_pslist *stack_a)
 int	main(int argc, char *argv[])
 {
 	int			*input;
-	int			*input_len;
-	t_pslist	*stack_a;
+	int			input_len;
+	t_pslist	**stack_a;
 	t_list		*res;
 
 	if (argc < 2)
@@ -56,11 +56,13 @@ int	main(int argc, char *argv[])
 		return (err_return(input, NULL));
 	sort(stack_a, &res);
 	if (!res)
-		return (err_return(input, stack_a));
+		return (err_return(input, *stack_a));
 	// optimize(&res);
 	// optimize()内で、res listにNULLなどのエラーを見つけたらfree and NULL
 	// if (!res)
 		// return (err_return(input, stack_a));
-	print_result(res);
+	if (!print_result(res))
+		return (err_return(input, *stack_a));
+	free(input);
 	return (EXIT_SUCCESS);
 }

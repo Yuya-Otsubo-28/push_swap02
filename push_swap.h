@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 16:37:34 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:40:27 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void		sort_5(t_pslist *stack, t_name name, t_list **res);
 
 t_bool		is_sorted(t_pslist *stack);
 
-void		print_result(t_list *res);
+t_bool		print_result(t_list *res);
 
 #endif
