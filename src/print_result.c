@@ -6,11 +6,11 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:38:14 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 17:03:08 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:38:25 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	print_result(t_list *res)
 {

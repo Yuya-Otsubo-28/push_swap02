@@ -6,11 +6,11 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:38:48 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 16:49:36 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:38:03 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int	*compress(int *input, int size)
 {

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	sort_2(t_pslist *stack, t_name name, t_list **res)
 {
@@ -24,7 +23,6 @@ void	sort_2(t_pslist *stack, t_name name, t_list **res)
 		ft_lstadd_back(res, ft_lstnew(swap(&stack, name)));
 	else
 		ft_lstadd_back(res, ft_lstnew(""));
-	// printf("res: %s\n", (*res)->content);
 }
 
 // lstadd_back()でlstnew()がNULLだったらERRORにする？？
@@ -38,7 +36,7 @@ void	sort_3(t_pslist *stack, t_name name, t_list **res)
 	{
 		ft_lstadd_back(res, ft_lstnew(swap(&stack, name)));
 		ft_lstadd_back(res, ft_lstnew(rotate(&stack, name)));
-	} // 1 3 2
+	}
 	if (stack->num > stack->next->num && stack->next->num < stack->prev->num \
 		&& stack->num < stack->prev->num)
 		ft_lstadd_back(res, ft_lstnew(swap(&stack, name)));
@@ -52,7 +50,7 @@ void	sort_3(t_pslist *stack, t_name name, t_list **res)
 	{
 		ft_lstadd_back(res, ft_lstnew(swap(&stack, name)));
 		ft_lstadd_back(res, ft_lstnew(rev_rotate(&stack, name)));
-	} // 3 2 1
+	}
 }
 
 static t_bool	reverse_or_not(t_pslist *current, int n, int size)

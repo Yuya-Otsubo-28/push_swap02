@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static void	under_five_case(t_pslist *stack, int size, t_name name, t_list **res)
 {
@@ -139,62 +139,62 @@ void	sort(t_pslist **stack_a, t_list **res)
 	recusive_sort(stack_a, &stack_b, res, a_size);
 }
 
-int	main(int argc, char *argv[])
-{
-	int	*ary_res;
-	int	*comp_res;
-	t_pslist **stack_a;
-	t_list *res;
-	int	size;
+// int	main(int argc, char *argv[])
+// {
+// 	int	*ary_res;
+// 	int	*comp_res;
+// 	t_pslist **stack_a;
+// 	t_list *res;
+// 	int	size;
 
-	ary_res = ary_init(argc, argv, &size);
-	printf("***********************\n");
-	printf("\ttest: ary_init\n\n");
-	if (!ary_res)
-	{
-		printf("NULL returned\n"); fflush(stdout);
-		return (0);
-	}
-	for (int i = 0; i < size; i++)
-	{
-		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
-	}
-	printf("size: %d\n", size);
-
-
-	printf("***********************\n\n");
-	printf("\ttest: compress\n\n");
-	comp_res = compress(ary_res, size);
-	for (int i = 0; i < size; i++)
-		printf("comp_res[%d]: %d\n", i, comp_res[i]);
+// 	ary_res = ary_init(argc, argv, &size);
+// 	printf("***********************\n");
+// 	printf("\ttest: ary_init\n\n");
+// 	if (!ary_res)
+// 	{
+// 		printf("NULL returned\n"); fflush(stdout);
+// 		return (0);
+// 	}
+// 	for (int i = 0; i < size; i++)
+// 	{
+// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
+// 	}
+// 	printf("size: %d\n", size);
 
 
-	printf("***********************\n\n");
-	printf("\ttest: stack_init\n\n");
-	stack_a = stack_init(comp_res, size);
-	for (t_pslist *node = *stack_a; ; node = node->next)
-	{
-		printf("list content: %d\n", node->num);
-		if (node->next->is_top)
-			break ;
-		printf("< next >\n");
-	}
-	printf("\n");
-	for (t_pslist *node = *stack_a; ; node = node->prev)
-	{
-		printf("list content: %d\n", node->num);
-		if (node->prev->is_top)
-			break ;
-		printf("< prev >\n");
-	}
+// 	printf("***********************\n\n");
+// 	printf("\ttest: compress\n\n");
+// 	comp_res = compress(ary_res, size);
+// 	for (int i = 0; i < size; i++)
+// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
 
-	printf("***********************\n\n");
-	printf("\ttest: sort\n\n");
-	sort(stack_a, &res);
 
-	print_result(res);
+// 	printf("***********************\n\n");
+// 	printf("\ttest: stack_init\n\n");
+// 	stack_a = stack_init(comp_res, size);
+// 	for (t_pslist *node = *stack_a; ; node = node->next)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->next->is_top)
+// 			break ;
+// 		printf("< next >\n");
+// 	}
+// 	printf("\n");
+// 	for (t_pslist *node = *stack_a; ; node = node->prev)
+// 	{
+// 		printf("list content: %d\n", node->num);
+// 		if (node->prev->is_top)
+// 			break ;
+// 		printf("< prev >\n");
+// 	}
 
-	free(comp_res);
-	free(ary_res);
-	return (0);
-}
+// 	printf("***********************\n\n");
+// 	printf("\ttest: sort\n\n");
+// 	sort(stack_a, &res);
+
+// 	print_result(res);
+
+// 	free(comp_res);
+// 	free(ary_res);
+// 	return (0);
+// }

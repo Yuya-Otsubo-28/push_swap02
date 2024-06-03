@@ -6,12 +6,11 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 15:29:10 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:39:15 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 static t_pslist *free_stack(t_pslist *stack_a)
 {
@@ -55,13 +54,13 @@ int	main(int argc, char *argv[])
 	stack_a = stack_init(input, input_len);
 	if (!stack_a)
 		return (err_return(input, NULL));
-	solve(stack_a, &res);
+	sort(stack_a, &res);
 	if (!res)
 		return (err_return(input, stack_a));
-	optimize(&res);
+	// optimize(&res);
 	// optimize()内で、res listにNULLなどのエラーを見つけたらfree and NULL
-	if (!res)
-		return (err_return(input, stack_a));
+	// if (!res)
+		// return (err_return(input, stack_a));
 	print_result(res);
 	return (EXIT_SUCCESS);
 }
