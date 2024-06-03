@@ -103,11 +103,6 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 
 	if (!stack_b && is_sorted(stack_a))
 		return (0);
-	
-	// if (!stack_b)
-	// 	middle = divide_half(stack_a, stack_b, A);
-	// else
-	// 	middle = divide_half(stack_b, stack_a, B);
 	b_size = get_stack_size(*stack_b);
 	if (b_size <= 5)
 	{
@@ -129,20 +124,19 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 	return ;
 }
 
-void	sort(t_pslist *stack_a, t_list **res)
+void	sort(t_pslist **stack_a, t_list **res)
 {
 	int			a_size;
 	t_pslist	*stack_b;
 
-	a_size = get_stack_size(stack_a);
+	a_size = get_stack_size(*stack_a);
 	if (a_size <= 5)
 	{
-		under_five_case(stack_a, a_size, A, res);
+		under_five_case(*stack_a, a_size, A, res);
 		return ;
 	}
 	stack_b = NULL;
-	
-	// recusive_sort(&stack_a, &stack_b, res);
+	recusive_sort(stack_a, &stack_b, res, a_size);
 }
 
 int	main(int argc, char *argv[])

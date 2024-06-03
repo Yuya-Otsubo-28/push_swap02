@@ -6,44 +6,33 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 14:53:39 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:29:10 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-static t_data *free_data(t_data *data)
+static t_pslist *free_stack(t_pslist *stack_a)
 {
-	int			i;
-	int			j;
 	t_pslist	*tmp;
 
-	i = 0;
-	while (i++ < data->a_size)
+	while (stack_a)
 	{
-		if (i != data->a_size)
-			tmp = (*(data->stack_a))->next;
-		free(*(data->stack_a));
-		(*(data->stack_a)) = tmp;
-	}
-	j = 0;
-	while (j++ < data->b_size)
-	{
-		if (j != data->b_size)
-			tmp = (*(data->stack_b))->next;
-		free(*(data->stack_b));
-		(*(data->stack_b)) = tmp;
+		tmp = stack_a->next;
+		free(stack_a);
+		stack_a = NULL;
+		stack_a = tmp;
 	}
 	return (NULL);
 }
 
-static int	err_return(int *input, t_data *data)
+static int	err_return(int *input, t_pslist *stack_a)
 {
 	if (input)
 		input = map_and_free(NULL, input);
-	if (data)
-		data = free_data(data);
+	if (stack_a)
+		stack_a = free_stack(stack_a);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }
@@ -52,7 +41,7 @@ int	main(int argc, char *argv[])
 {
 	int			*input;
 	int			*input_len;
-	t_data		*data;
+	t_pslist	*stack_a;
 	t_list		*res;
 
 	if (argc < 2)
@@ -63,16 +52,16 @@ int	main(int argc, char *argv[])
 	input = map_and_free(compress(input, input_len), input);
 	if (!input)
 		return (err_return(NULL, NULL));
-	data = data_init(input, input_len);
-	if (!data)
+	stack_a = stack_init(input, input_len);
+	if (!stack_a)
 		return (err_return(input, NULL));
-	solve(data, &res);
+	solve(stack_a, &res);
 	if (!res)
-		return (err_return(input, data));
+		return (err_return(input, stack_a));
 	optimize(&res);
 	// optimize()内で、res listにNULLなどのエラーを見つけたらfree and NULL
 	if (!res)
-		return (err_return(input, data));
+		return (err_return(input, stack_a));
 	print_result(res);
 	return (EXIT_SUCCESS);
 }
