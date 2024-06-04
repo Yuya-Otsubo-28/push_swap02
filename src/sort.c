@@ -13,8 +13,29 @@
 #include "push_swap.h"
 #include "libft.h"
 
+static void	__print_stack(t_pslist *stack)
+{
+	int	size;
+	int	i;
+
+	if (!stack)
+	{
+		printf("stack is empty\n"); fflush(stdin);
+	}
+	i = 0;
+	size = get_stack_size(stack);
+	while (i++ < size)
+	{
+		printf("%d\n", stack->num); fflush(stdin);
+		stack = stack->next;
+	}
+	printf("--------------------\n"); fflush(stdin);
+}
+
 static void	under_five_case(t_pslist **stack, int size, t_name name, t_list **res)
 {
+	if (is_sorted(*stack))
+		return ;
 	if (size == 2)
 		sort_2(stack, name, res);
 	else if (size == 3)
@@ -121,10 +142,14 @@ static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, in
 {
 	int	i;
 
+	printf("b_size: %d\n", b_size); fflush(stdin);
 	under_five_case(stack_b, b_size, B, res);
+	__print_stack(*stack_a);
 	i = 0;
 	while (i++ < b_size)
 	{
+		// __print_stack(*stack_a);
+		// __print_stack(*stack_b);
 		ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
 		ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
 	}
@@ -132,25 +157,33 @@ static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, in
 	return (b_size);
 }
 
+
 static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int pre_size)
 {
 	int	b_size;
 	int	sorted_size;
 	int	i;
 
-	if (!stack_b && is_sorted(*stack_a))
+	if (!*stack_b && is_sorted(*stack_a))
 		return (0);
 	b_size = get_stack_size(*stack_b);
-	if (b_size <= 5)
+	if (b_size > 0 && b_size <= 5)
 		return (proc_of_leaf(stack_a, stack_b, res, b_size));
 	if (!b_size)
 		b_size = make_stack_b(stack_a, stack_b, res, pre_size);
 	else
+	{
+		printf("pop\n"); fflush(stdin);
 		b_size = push_half_to_a(stack_a, stack_b, res);
+	}
 	sorted_size = recusive_sort(stack_a, stack_b, res, b_size);
+	printf("I did it !!: res: %d\n", sorted_size); fflush(stdin);
 	i = 0;
 	while (sorted_size + i++ < pre_size)
+	{
 		ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
+		__print_stack(*stack_b);
+	}
 	recusive_sort(stack_a, stack_b, res, i);
 	return (pre_size);
 }

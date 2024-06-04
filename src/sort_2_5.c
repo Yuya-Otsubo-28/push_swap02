@@ -61,6 +61,7 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 	count = 0;
 	while (current->num != n)
 	{
+		printf("is this ?\n"); fflush(stdin);
 		current = current->next;
 		count++;
 	}
@@ -102,18 +103,26 @@ void	sort_5(t_pslist **stack, t_name name, t_list **res)
 
 	sub_stack = NULL;
 	if (reverse_or_not(*stack, 0, 5))
+	{
 		while ((*stack)->num != 0)
 			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
+	}
 	else
+	{
 		while ((*stack)->num != 0)
 			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	}
 	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	if (reverse_or_not(*stack, 1, 4))
+	{
 		while ((*stack)->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
+	}
 	else
+	{
 		while ((*stack)->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	}
 	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	sort_3(stack, name, res);
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));
