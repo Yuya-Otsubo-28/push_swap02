@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 20:11:49 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/05 04:47:08 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 t_pslist *free_stack(t_pslist *stack)
 {
@@ -45,7 +46,7 @@ static void	free_all(int *input, t_pslist **stack_a, t_list *res)
 {
 	if (input)
 		free(input);
-	if (*stack_a)
+	if (stack_a && *stack_a)
 		free_stack(*stack_a);
 	if (stack_a)
 		free(stack_a);

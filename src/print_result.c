@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 t_bool	print_result(t_list *res)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 int	*compress(int *input, int size)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 static t_pslist	*pslist_new(int n)
 {

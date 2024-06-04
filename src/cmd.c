@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 char	*swap(t_pslist **stack, t_name name)
 {

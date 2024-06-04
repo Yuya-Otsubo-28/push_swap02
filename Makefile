@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 INCLUDES = -I./ -I./libft
 SRCS = ./src/ary_init.c \
 		./src/cmd.c \
@@ -17,7 +17,7 @@ LIBFT = $(LIBFT_PATH)/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) $(OBJS) -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBFT) -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

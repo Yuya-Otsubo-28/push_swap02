@@ -11,17 +11,18 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 static void	under_five_case(t_pslist **stack, int size, t_name name, t_list **res)
 {
 	if (size == 2)
 		sort_2(stack, name, res);
 	else if (size == 3)
-		sort_3(*stack, name, res);
+		sort_3(stack, name, res);
 	else if (size == 4)
-		sort_4(*stack, name, res);
+		sort_4(stack, name, res);
 	else if (size == 5)
-		sort_5(*stack, name, res);
+		sort_5(stack, name, res);
 	return ;
 }
 

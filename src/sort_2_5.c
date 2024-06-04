@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft.h"
 
 void	sort_2(t_pslist **stack, t_name name, t_list **res)
 {
@@ -73,7 +74,7 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 // 最適化の余地あり 1 2 3 4, 2 1 3 4 など
 void	sort_4(t_pslist **stack, t_name name, t_list **res)
 {
-	t_pslist	**sub_stack;
+	t_pslist	*sub_stack;
 
 	sub_stack = NULL;
 	if (reverse_or_not(*stack, 0, 4))
@@ -82,22 +83,22 @@ void	sort_4(t_pslist **stack, t_name name, t_list **res)
 	else
 		while ((*stack)->num != 0)
 			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
+	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	if (reverse_or_not(*stack, 1, 3))
 		while ((*stack)->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
 	else
 		while ((*stack)->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
+	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	sort_2(stack, name, res);
-	ft_lstadd_back(res, ft_lstnew(push(sub_stack, stack, name)));
-	ft_lstadd_back(res, ft_lstnew(push(sub_stack, stack, name)));
+	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));
+	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));
 }
 
 void	sort_5(t_pslist **stack, t_name name, t_list **res)
 {
-	t_pslist	**sub_stack;
+	t_pslist	*sub_stack;
 
 	sub_stack = NULL;
 	if (reverse_or_not(*stack, 0, 5))
@@ -106,17 +107,17 @@ void	sort_5(t_pslist **stack, t_name name, t_list **res)
 	else
 		while ((*stack)->num != 0)
 			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
+	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	if (reverse_or_not(*stack, 1, 4))
 		while ((*stack)->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
 	else
 		while ((*stack)->num != 1)
 			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
+	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	sort_3(stack, name, res);
-	ft_lstadd_back(res, ft_lstnew(push(sub_stack, stack, name)));
-	ft_lstadd_back(res, ft_lstnew(push(sub_stack, stack, name)));
+	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));
+	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));
 }
 
 // int	main(int argc, char *argv[])
