@@ -54,20 +54,25 @@ void	sort_3(t_pslist **stack, t_name name, t_list **res)
 	}
 }
 
-static t_bool	reverse_or_not(t_pslist *current, int n, int size)
+void	get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	while (current->num != n)
+	*most_small = INT_MAX;
+	*next_small = INT_MAX;
+	i = 0;
+	while (i++ < size)
 	{
-		printf("is this ?\n"); fflush(stdin);
-		current = current->next;
-		count++;
+		if (stack->num <= *most_small)
+			*most_small = stack->num;
+		stack = stack->next;
 	}
-	if (count > size / 2)
-		return (true);
-	return (false);
+	while (i-- > 0)
+	{
+		if (stack->num > *most_small && stack->num <= *next_small)
+			*next_small = stack->num;
+		stack = stack->next;
+	}
 }
 
 //4と5のケースが再帰のゴールになるので、ここで最適化させて作るべき
@@ -76,21 +81,16 @@ static t_bool	reverse_or_not(t_pslist *current, int n, int size)
 void	sort_4(t_pslist **stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
+	int			most_small;
+	int			next_small;
 
 	sub_stack = NULL;
-	if (reverse_or_not(*stack, 0, 4))
-		while ((*stack)->num != 0)
-			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
-	else
-		while ((*stack)->num != 0)
-			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	get_small_nums(*stack, &most_small, &next_small, 4);
+	while ((*stack)->num != most_small)
+		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
-	if (reverse_or_not(*stack, 1, 3))
-		while ((*stack)->num != 1)
-			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
-	else
-		while ((*stack)->num != 1)
-			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	while ((*stack)->num != next_small)
+		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	sort_2(stack, name, res);
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));
@@ -100,29 +100,16 @@ void	sort_4(t_pslist **stack, t_name name, t_list **res)
 void	sort_5(t_pslist **stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
+	int			most_small;
+	int			next_small;
 
 	sub_stack = NULL;
-	if (reverse_or_not(*stack, 0, 5))
-	{
-		while ((*stack)->num != 0)
-			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
-	}
-	else
-	{
-		while ((*stack)->num != 0)
-			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	}
+	get_small_nums(*stack, &most_small, &next_small, 5);
+	while ((*stack)->num != most_small)
+		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
-	if (reverse_or_not(*stack, 1, 4))
-	{
-		while ((*stack)->num != 1)
-			ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
-	}
-	else
-	{
-		while ((*stack)->num != 1)
-			ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	}
+	while ((*stack)->num != next_small)
+		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
 	ft_lstadd_back(res, ft_lstnew(push(stack, &sub_stack, name * -1)));
 	sort_3(stack, name, res);
 	ft_lstadd_back(res, ft_lstnew(push(&sub_stack, stack, name)));

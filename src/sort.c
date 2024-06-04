@@ -13,27 +13,29 @@
 #include "push_swap.h"
 #include "libft.h"
 
-static void	__print_stack(t_pslist *stack)
-{
-	int	size;
-	int	i;
+// static void	__print_stack(t_pslist *stack)
+// {
+// 	int	size;
+// 	int	i;
 
-	if (!stack)
-	{
-		printf("stack is empty\n"); fflush(stdin);
-	}
-	i = 0;
-	size = get_stack_size(stack);
-	while (i++ < size)
-	{
-		printf("%d\n", stack->num); fflush(stdin);
-		stack = stack->next;
-	}
-	printf("--------------------\n"); fflush(stdin);
-}
+// 	if (!stack)
+// 	{
+// 		printf("stack is empty\n"); fflush(stdin);
+// 	}
+// 	i = 0;
+// 	size = get_stack_size(stack);
+// 	while (i++ < size)
+// 	{
+// 		printf("%d\n", stack->num); fflush(stdin);
+// 		stack = stack->next;
+// 	}
+// 	printf("--------------------\n"); fflush(stdin);
+// }
 
 static void	under_five_case(t_pslist **stack, int size, t_name name, t_list **res)
 {
+	// printf("-----------------------\n");
+	// printf("size: %d\n", size);
 	if (is_sorted(*stack))
 		return ;
 	if (size == 2)
@@ -94,7 +96,8 @@ static int	get_middle(t_pslist *stack)
 			min = stack->num;
 		stack = stack->next;
 	}
-	return ((max - min) / 2);
+	printf("max: %d\nmin: %d\n", max, min);
+	return (min + (max - min) / 2);
 }
 
 static int	make_stack_b(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int a_size)
@@ -123,17 +126,20 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 
 	middle = get_middle(*stack_b);
 	b_size = get_stack_size(*stack_b);
+	// printf("b_size: %d\n", b_size); fflush(stdin);
 	i = 0;
 	count = 0;
+	// __print_stack(*stack_b);
+	// printf("%d\n", middle);
 	while (i++ < b_size)
 	{
 		if ((*stack_b)->num < middle)
-			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
-		else
 		{
-			res++;
-			ft_lstadd_back(res, ft_lstnew(rotate(stack_b, B)));
+			count++;
+			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
 		}
+		else
+			ft_lstadd_back(res, ft_lstnew(rotate(stack_b, B)));
 	}
 	return (count);
 }
@@ -142,9 +148,9 @@ static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, in
 {
 	int	i;
 
-	printf("b_size: %d\n", b_size); fflush(stdin);
+	// printf("b_size: %d\n", b_size); fflush(stdin);
+	// __print_stack(*stack_a);
 	under_five_case(stack_b, b_size, B, res);
-	__print_stack(*stack_a);
 	i = 0;
 	while (i++ < b_size)
 	{
@@ -173,16 +179,17 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 		b_size = make_stack_b(stack_a, stack_b, res, pre_size);
 	else
 	{
-		printf("pop\n"); fflush(stdin);
 		b_size = push_half_to_a(stack_a, stack_b, res);
 	}
 	sorted_size = recusive_sort(stack_a, stack_b, res, b_size);
-	printf("I did it !!: res: %d\n", sorted_size); fflush(stdin);
+	printf("sorted_size: %d\n", sorted_size);
+	// printf("fist done\n"); fflush(stdin);
+	// printf("I did it !!: res: %d\n", sorted_size); fflush(stdin);
 	i = 0;
 	while (sorted_size + i++ < pre_size)
 	{
 		ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
-		__print_stack(*stack_b);
+		// __print_stack(*stack_b);
 	}
 	recusive_sort(stack_a, stack_b, res, i);
 	return (pre_size);
