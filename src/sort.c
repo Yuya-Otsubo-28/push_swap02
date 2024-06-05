@@ -69,6 +69,7 @@ int	get_stack_size(t_pslist *stack)
 	if (!stack)
 		return (0);
 	size = 0;
+	// __print_stack(stack);
 	while (1)
 	{
 		size++;
@@ -76,6 +77,7 @@ int	get_stack_size(t_pslist *stack)
 			break ;
 		stack = stack->next;
 	}
+	// printf("size: %d\n", size);
 	return (size);
 }
 
@@ -96,7 +98,6 @@ static int	get_middle(t_pslist *stack)
 			min = stack->num;
 		stack = stack->next;
 	}
-	printf("max: %d\nmin: %d\n", max, min);
 	return (min + (max - min) / 2);
 }
 
@@ -104,17 +105,23 @@ static int	make_stack_b(t_pslist **stack_a, t_pslist **stack_b, t_list **res, in
 {
 	int			middle;
 	int			i;
+	int			count;
 
 	middle = a_size / 2;
 	i = 0;
-	while (i++ < a_size)
+	count = 0;
+	while (i < a_size)
 	{
 		if ((*stack_a)->num < middle)
+		{
 			ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
+			count++;
+		}
 		else
 			ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
+		i++;
 	}
-	return (i);
+	return (count);
 }
 
 static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
@@ -133,7 +140,7 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 	// printf("%d\n", middle);
 	while (i++ < b_size)
 	{
-		if ((*stack_b)->num < middle)
+		if ((*stack_b)->num > middle)
 		{
 			count++;
 			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
@@ -170,6 +177,7 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 	int	sorted_size;
 	int	i;
 
+	// printf("%d\n", pre_size);
 	if (!*stack_b && is_sorted(*stack_a))
 		return (0);
 	b_size = get_stack_size(*stack_b);
@@ -179,17 +187,22 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 		b_size = make_stack_b(stack_a, stack_b, res, pre_size);
 	else
 	{
+		// printf("yeah\n");
+		// __print_stack(*stack_b);
 		b_size = push_half_to_a(stack_a, stack_b, res);
+		// printf("sorted_size: %d\npre_size: %d\n", sorted_size, pre_size); fflush(stdin);
+		// __print_stack(*stack_b);
 	}
+	// printf("sorted_size: %d\nb_size: %d\n", sorted_size, b_size); fflush(stdin);
 	sorted_size = recusive_sort(stack_a, stack_b, res, b_size);
-	printf("sorted_size: %d\n", sorted_size);
-	// printf("fist done\n"); fflush(stdin);
-	// printf("I did it !!: res: %d\n", sorted_size); fflush(stdin);
+	// printf("sorted_size: %d\n", sorted_size);
 	i = 0;
-	while (sorted_size + i++ < pre_size)
+	printf("sorted_size: %d\npre_size: %d\n", sorted_size, pre_size); fflush(stdin);
+	while (sorted_size + i < pre_size)
 	{
 		ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
 		// __print_stack(*stack_b);
+		i++;
 	}
 	recusive_sort(stack_a, stack_b, res, i);
 	return (pre_size);
