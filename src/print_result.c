@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:38:14 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 19:40:23 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:25:12 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_bool	print_result(t_list *res)
 {
 	t_list *node;
 
+	if (!is_va)
 	node = res;
 	while (1)
 	{

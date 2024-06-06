@@ -34,8 +34,6 @@
 
 static void	under_five_case(t_pslist **stack, int size, t_name name, t_list **res)
 {
-	// printf("-----------------------\n");
-	// printf("size: %d\n", size);
 	if (is_sorted(*stack))
 		return ;
 	if (size == 2)
@@ -69,7 +67,6 @@ int	get_stack_size(t_pslist *stack)
 	if (!stack)
 		return (0);
 	size = 0;
-	// __print_stack(stack);
 	while (1)
 	{
 		size++;
@@ -77,7 +74,6 @@ int	get_stack_size(t_pslist *stack)
 			break ;
 		stack = stack->next;
 	}
-	// printf("size: %d\n", size);
 	return (size);
 }
 
@@ -133,20 +129,17 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 
 	middle = get_middle(*stack_b);
 	b_size = get_stack_size(*stack_b);
-	// printf("b_size: %d\n", b_size); fflush(stdin);
 	i = 0;
 	count = 0;
-	// __print_stack(*stack_b);
-	// printf("%d\n", middle);
 	while (i++ < b_size)
 	{
-		if ((*stack_b)->num > middle)
+		if ((*stack_b)->num >= middle)
+			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
+		else
 		{
 			count++;
-			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
-		}
-		else
 			ft_lstadd_back(res, ft_lstnew(rotate(stack_b, B)));
+		}
 	}
 	return (count);
 }
@@ -155,14 +148,10 @@ static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, in
 {
 	int	i;
 
-	// printf("b_size: %d\n", b_size); fflush(stdin);
-	// __print_stack(*stack_a);
 	under_five_case(stack_b, b_size, B, res);
 	i = 0;
 	while (i++ < b_size)
 	{
-		// __print_stack(*stack_a);
-		// __print_stack(*stack_b);
 		ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
 		ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
 	}
@@ -177,7 +166,6 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 	int	sorted_size;
 	int	i;
 
-	// printf("%d\n", pre_size);
 	if (!*stack_b && is_sorted(*stack_a))
 		return (0);
 	b_size = get_stack_size(*stack_b);
@@ -186,22 +174,12 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 	if (!b_size)
 		b_size = make_stack_b(stack_a, stack_b, res, pre_size);
 	else
-	{
-		// printf("yeah\n");
-		// __print_stack(*stack_b);
 		b_size = push_half_to_a(stack_a, stack_b, res);
-		// printf("sorted_size: %d\npre_size: %d\n", sorted_size, pre_size); fflush(stdin);
-		// __print_stack(*stack_b);
-	}
-	// printf("sorted_size: %d\nb_size: %d\n", sorted_size, b_size); fflush(stdin);
 	sorted_size = recusive_sort(stack_a, stack_b, res, b_size);
-	// printf("sorted_size: %d\n", sorted_size);
 	i = 0;
-	printf("sorted_size: %d\npre_size: %d\n", sorted_size, pre_size); fflush(stdin);
 	while (sorted_size + i < pre_size)
 	{
 		ft_lstadd_back(res, ft_lstnew(push(stack_a, stack_b, B)));
-		// __print_stack(*stack_b);
 		i++;
 	}
 	recusive_sort(stack_a, stack_b, res, i);
@@ -227,63 +205,3 @@ void	sort(t_pslist **stack_a, t_list **res)
 	ft_lstadd_back(res, ft_lstnew("end"));
 	free_stack(stack_b);
 }
-
-// int	main(int argc, char *argv[])
-// {
-// 	int	*ary_res;
-// 	int	*comp_res;
-// 	t_pslist **stack_a;
-// 	t_list *res;
-// 	int	size;
-
-// 	ary_res = ary_init(argc, argv, &size);
-// 	printf("***********************\n");
-// 	printf("\ttest: ary_init\n\n");
-// 	if (!ary_res)
-// 	{
-// 		printf("NULL returned\n"); fflush(stdout);
-// 		return (0);
-// 	}
-// 	for (int i = 0; i < size; i++)
-// 	{
-// 		printf("ary_res[%d]: %d\n", i, ary_res[i]); fflush(stdout);
-// 	}
-// 	printf("size: %d\n", size);
-
-
-// 	printf("***********************\n\n");
-// 	printf("\ttest: compress\n\n");
-// 	comp_res = compress(ary_res, size);
-// 	for (int i = 0; i < size; i++)
-// 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
-
-
-// 	printf("***********************\n\n");
-// 	printf("\ttest: stack_init\n\n");
-// 	stack_a = stack_init(comp_res, size);
-// 	for (t_pslist *node = *stack_a; ; node = node->next)
-// 	{
-// 		printf("list content: %d\n", node->num);
-// 		if (node->next->is_top)
-// 			break ;
-// 		printf("< next >\n");
-// 	}
-// 	printf("\n");
-// 	for (t_pslist *node = *stack_a; ; node = node->prev)
-// 	{
-// 		printf("list content: %d\n", node->num);
-// 		if (node->prev->is_top)
-// 			break ;
-// 		printf("< prev >\n");
-// 	}
-
-// 	printf("***********************\n\n");
-// 	printf("\ttest: sort\n\n");
-// 	sort(stack_a, &res);
-
-// 	print_result(res);
-
-// 	free(comp_res);
-// 	free(ary_res);
-// 	return (0);
-// }
