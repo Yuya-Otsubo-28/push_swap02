@@ -6,19 +6,12 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/08 03:35:10 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/08 05:12:03 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
-
-static int	*err_return(int *res)
-{
-	if (res)
-		free(res);
-	return (NULL);
-}
 
 static void	free_all(char **args)
 {
@@ -30,9 +23,19 @@ static void	free_all(char **args)
 	free(args);
 }
 
+static int	*err_return(int *res, char **args)
+{
+	if (res)
+		free(res);
+	if (args)
+		free_all(args);
+	return (NULL);
+}
+
+
 static int	*arg_2_case(char *argv[], int *size)
 {
-	size_t	i;
+	int		i;
 	int		*res;
 	char	**args;
 
@@ -44,29 +47,19 @@ static int	*arg_2_case(char *argv[], int *size)
 		(*size)++;
 	res = (int *)malloc(sizeof(int) * *size);
 	if (!res)
-	{
-		free_all(args);
-		return (NULL);
-	}
-	i = 0;
-	while (i < (size_t)*size)
+		return (err_return(NULL, args));
+	i = -1;
+	while (++i < *size)
 	{
 		if (!is_valid_arg(args[i]))
-		{
-			free_all(args);
-			return (err_return(res));
-		}
+			return (err_return(res, args));
 		res[i] = ft_atoi(args[i]);
-		i++;
 	}
 	if (is_duplicated(res, *size))
-		return (err_return(res));
+		return (err_return(res, args));
 	free_all(args);
 	return (res);
 }
-
-// 'len' is for counting length of int array.
-// If input is a string, 'argc' shouldn't use as length of int array. (beacause 'argc' is always 2 then.)
 
 int	*ary_init(int argc, char *argv[], int *len)
 {
@@ -83,12 +76,12 @@ int	*ary_init(int argc, char *argv[], int *len)
 	while (i < (size_t)argc)
 	{
 		if (!is_valid_arg(argv[i]))
-			return (err_return(res));
+			return (err_return(res, NULL));
 		res[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
 	if (is_duplicated(res, argc - 1))
-		return (err_return(res));
+		return (err_return(res, NULL));
 	return (res);
 }
 
