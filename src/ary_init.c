@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ary_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 16:38:13 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:56:48 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ t_bool	is_duplicated(int *ary, int size)
 	return (false);
 }
 
+static void	free_all(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		free(args[i++]);
+	free(args);
+}
+
 static int	*arg_2_case(char *argv[], int *size)
 {
 	size_t	i;
@@ -102,6 +112,7 @@ static int	*arg_2_case(char *argv[], int *size)
 	}
 	if (is_duplicated(res, *size))
 		return (err_return(res));
+	free_all(args);
 	return (res);
 }
 
