@@ -9,7 +9,8 @@ SRCS = ./src/ary_init.c \
 		./src/push_swap.c \
 		./src/sort_2_5.c \
 		./src/sort.c \
-		./src/stack_init.c
+		./src/stack_init.c \
+		./src/under_five_case.c
 OBJS = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a

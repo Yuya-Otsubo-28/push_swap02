@@ -32,21 +32,6 @@
 // 	printf("--------------------\n"); fflush(stdin);
 // }
 
-static void	under_five_case(t_pslist **stack, int size, t_name name, t_list **res)
-{
-	if (is_sorted(*stack))
-		return ;
-	if (size == 2)
-		sort_2(stack, name, res);
-	else if (size == 3)
-		sort_3(stack, name, res);
-	else if (size == 4)
-		sort_4(stack, name, res);
-	else if (size == 5)
-		sort_5(stack, name, res);
-	return ;
-}
-
 t_bool	is_sorted(t_pslist *stack)
 {
 	while (1)
@@ -147,10 +132,15 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int b_size)
 {
 	int	i;
+	int	push_nums;
 
-	under_five_case(stack_b, b_size, B, res);
+	if (b_size > 3 && !is_sorted(*stack_b))
+		push_nums = b_size - 2;
+	else
+		push_nums = b_size;
+	under_five_case(stack_b, stack_a, b_size, B, res);
 	i = 0;
-	while (i++ < b_size)
+	while (i++ < push_nums)
 	{
 		ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
 		ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
@@ -195,7 +185,7 @@ void	sort(t_pslist **stack_a, t_list **res)
 	a_size = get_stack_size(*stack_a);
 	if (a_size <= 5)
 	{
-		under_five_case(stack_a, a_size, A, res);
+		under_five_case(stack_a, NULL, a_size, A, res);
 		ft_lstadd_back(res, ft_lstnew("end"));
 		free_stack(stack_b);
 		return ;

@@ -84,6 +84,8 @@ void	sort_4(t_pslist **stack, t_name name, t_list **res)
 	int			most_small;
 	int			next_small;
 
+	if (is_sorted(*stack))
+		return ;
 	sub_stack = NULL;
 	get_small_nums(*stack, &most_small, &next_small, 4);
 	while ((*stack)->num != most_small)
@@ -103,6 +105,8 @@ void	sort_5(t_pslist **stack, t_name name, t_list **res)
 	int			most_small;
 	int			next_small;
 
+	if (is_sorted(*stack))
+		return ;
 	sub_stack = NULL;
 	get_small_nums(*stack, &most_small, &next_small, 5);
 	while ((*stack)->num != most_small)
