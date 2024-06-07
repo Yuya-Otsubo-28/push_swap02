@@ -13,24 +13,24 @@
 #include "push_swap.h"
 #include "libft.h"
 
-// static void	__print_stack(t_pslist *stack)
-// {
-// 	int	size;
-// 	int	i;
+void	__print_stack(t_pslist *stack)
+{
+	int	size;
+	int	i;
 
-// 	if (!stack)
-// 	{
-// 		printf("stack is empty\n"); fflush(stdin);
-// 	}
-// 	i = 0;
-// 	size = get_stack_size(stack);
-// 	while (i++ < size)
-// 	{
-// 		printf("%d\n", stack->num); fflush(stdin);
-// 		stack = stack->next;
-// 	}
-// 	printf("--------------------\n"); fflush(stdin);
-// }
+	if (!stack)
+	{
+		printf("stack is empty\n"); fflush(stdin);
+	}
+	i = 0;
+	size = get_stack_size(stack);
+	while (i++ < size)
+	{
+		printf("%d\n", stack->num); fflush(stdin);
+		stack = stack->next;
+	}
+	printf("--------------------\n"); fflush(stdin);
+}
 
 t_bool	is_sorted(t_pslist *stack)
 {
@@ -118,7 +118,7 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 	count = 0;
 	while (i++ < b_size)
 	{
-		if ((*stack_b)->num >= middle)
+		if ((*stack_b)->num > middle)
 			ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
 		else
 		{
@@ -131,20 +131,20 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 
 static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int b_size)
 {
-	int	i;
-	int	push_nums;
+	// int	i;
+	// int	push_nums;
 
-	if (b_size > 3 && !is_sorted(*stack_b))
-		push_nums = b_size - 2;
-	else
-		push_nums = b_size;
+	// if (b_size > 3 && !is_sorted(*stack_b))
+	// 	push_nums = b_size - 2;
+	// else
+	// 	push_nums = b_size;
 	under_five_case(stack_b, stack_a, b_size, B, res);
-	i = 0;
-	while (i++ < push_nums)
-	{
-		ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
-		ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
-	}
+	// i = 0;
+	// while (i++ < push_nums)
+	// {
+	// 	ft_lstadd_back(res, ft_lstnew(push(stack_b, stack_a, A)));
+	// 	ft_lstadd_back(res, ft_lstnew(rotate(stack_a, A)));
+	// }
 	*stack_b = NULL;
 	return (b_size);
 }
@@ -157,7 +157,7 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 	int	i;
 
 	if (!*stack_b && is_sorted(*stack_a))
-		return (0);
+		return (pre_size);
 	b_size = get_stack_size(*stack_b);
 	if (b_size > 0 && b_size <= 5)
 		return (proc_of_leaf(stack_a, stack_b, res, b_size));
@@ -165,7 +165,13 @@ static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, i
 		b_size = make_stack_b(stack_a, stack_b, res, pre_size);
 	else
 		b_size = push_half_to_a(stack_a, stack_b, res);
+	// printf("first\n"); fflush(stdin);
+	// __print_stack(*stack_a);
+	// __print_stack(*stack_b);
 	sorted_size = recusive_sort(stack_a, stack_b, res, b_size);
+	// printf("second\nsorted_size:%d\npre_size: %d\n", sorted_size, pre_size); fflush(stdin);
+	// __print_stack(*stack_a);
+	// __print_stack(*stack_b);
 	i = 0;
 	while (sorted_size + i < pre_size)
 	{

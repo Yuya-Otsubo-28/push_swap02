@@ -119,6 +119,8 @@ char	**ft_split(char const *s, char c)
 // 	printf("s: %s\n", s);
 // 	printf("c: %c\n\n", c);
 // 	res = ft_split(s, c);
+// 	if (!res)
+// 		return (0);
 // 	i = 0;
 // 	while (res[i])
 // 	{

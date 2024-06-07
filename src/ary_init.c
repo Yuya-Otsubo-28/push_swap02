@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/06 19:56:48 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/07 19:55:33 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ static int	*arg_2_case(char *argv[], int *size)
 		(*size)++;
 	res = (int *)malloc(sizeof(int) * *size);
 	if (!res)
+	{
+		free_all(args);
 		return (NULL);
+	}
 	i = 0;
 	while (i < (size_t)*size)
 	{
