@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/07 17:05:43 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/08 02:02:56 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,17 @@ t_pslist	*free_stack(t_pslist *stack_a);
 void		under_five_case(t_pslist **stack, t_pslist **stack2, int size, t_name name, t_list **res);
 
 void		get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size);
+
+/*********************************/
+/*                               */
+/*       ary_init_utils.c        */
+/*                               */
+/*********************************/
+
+t_bool	is_int_range(int res, int flag, char c);
+
+t_bool	is_valid_arg(char *arg);
+
+t_bool	is_duplicated(int *ary, int size);
 
 #endif

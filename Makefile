@@ -3,6 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 INCLUDES = -I./ -I./libft
 SRCS = ./src/ary_init.c \
+		./src/ary_init_utils.c \
 		./src/cmd.c \
 		./src/compress.c \
 		./src/print_result.c \
