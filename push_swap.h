@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/08 02:02:56 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/08 14:35:50 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,33 @@ t_bool	is_int_range(int res, int flag, char c);
 t_bool	is_valid_arg(char *arg);
 
 t_bool	is_duplicated(int *ary, int size);
+
+/*********************************/
+/*                               */
+/*      opt_sort_utils1.c        */
+/*                               */
+/*********************************/
+
+void	sort_1_3_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+void	sort_2_1_3(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+void	sort_2_3_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+void	sort_3_1_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+void	sort_3_2_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+/*********************************/
+/*                               */
+/*      opt_sort_utils2.c        */
+/*                               */
+/*********************************/
+
+void	sort_1_2_3(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+void	sort_1_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+void	sort_2_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
 
 #endif

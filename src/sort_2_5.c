@@ -26,8 +26,6 @@ void	sort_2(t_pslist **stack, t_name name, t_list **res)
 		ft_lstadd_back(res, ft_lstnew(""));
 }
 
-// lstadd_back()でlstnew()がNULLだったらERRORにする？？
-
 void	sort_3(t_pslist **stack, t_name name, t_list **res)
 {
 	if ((*stack)->num < (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num)
@@ -75,9 +73,6 @@ void	get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size)
 	}
 }
 
-//4と5のケースが再帰のゴールになるので、ここで最適化させて作るべき
-
-// 最適化の余地あり 1 2 3 4, 2 1 3 4 など
 void	sort_4(t_pslist **stack, t_name name, t_list **res)
 {
 	t_pslist	*sub_stack;
