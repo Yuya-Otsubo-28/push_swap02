@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/05 04:47:08 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/08 14:05:45 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,6 @@ int	main(int argc, char *argv[])
 	sort(stack_a, &res);
 	if (!res)
 		return (err_return(input, stack_a, NULL));
-	// optimize(&res);
-	// optimize()内で、res listにNULLなどのエラーを見つけたらfree and NULL
-	// if (!res)
-		// return (err_return(input, stack_a));
 	if (!print_result(res))
 		return (err_return(input, stack_a, res));
 	free_all(input, stack_a, res);

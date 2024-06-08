@@ -3,24 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   compress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:38:48 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 16:38:03 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:04:33 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
+static int	search_min_index(int *input, int size, long long prev_min)
+{
+	int			i;
+	int			min_index;
+	long long	min;
+
+	min = LLONG_MAX;
+	i = 0;
+	while (i < size)
+	{
+		if ((long long)input[i] > prev_min && (long long)input[i] <= min)
+		{
+			min_index = i;
+			min = input[min_index];
+		}
+		i++;
+	}
+	return (min_index);
+}
+
 int	*compress(int *input, int size)
 {
-	int	*res;
+	int			*res;
 	long long	prev_min;
-	int	min_index;
-	long long	min;
-	int	i;
-	int	j;
+	int			min_index;
+	int			i;
 
 	res = (int *)malloc(sizeof(int) * size);
 	if (!res)
@@ -29,17 +47,7 @@ int	*compress(int *input, int size)
 	i = 0;
 	while (i < size)
 	{
-		min = LLONG_MAX;
-		j = 0;
-		while (j < size)
-		{
-			if ((long long)input[j] > prev_min && (long long)input[j] <= min)
-			{
-				min_index = j;
-				min = input[min_index];
-			}
-			j++;
-		}
+		min_index = search_min_index(input, size, prev_min);
 		res[min_index] = i++;
 		prev_min = input[min_index];
 	}
