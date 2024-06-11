@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/08 05:12:03 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/11 18:14:27 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	*err_return(int *res, char **args)
 		free_all(args);
 	return (NULL);
 }
-
 
 static int	*arg_2_case(char *argv[], int *size)
 {

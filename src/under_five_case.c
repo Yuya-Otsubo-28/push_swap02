@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   under_five_case.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuotsubo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 18:15:31 by yuotsubo          #+#    #+#             */
+/*   Updated: 2024/06/11 18:19:49 by yuotsubo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "libft.h"
 
-static void	opt_sort_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res)
+static void	opt_sort_2(t_pslist **stack, t_pslist **sub_stack, \
+		t_name name, t_list **res)
 {
 	if (name == A)
 		sort_2(stack, name, res);
@@ -11,32 +24,40 @@ static void	opt_sort_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_li
 		sort_2_1(stack, sub_stack, name, res);
 }
 
-static void	opt_sort_3(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res)
+static void	opt_sort_3(t_pslist **stack, t_pslist **sub_stack, \
+		t_name name, t_list **res)
 {
 	if (name == A)
 		sort_3(stack, name, res);
-	else if ((*stack)->num < (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num)
+	else if ((*stack)->num < (*stack)->next->num && \
+			(*stack)->next->num < (*stack)->prev->num)
 		sort_1_2_3(stack, sub_stack, name, res);
-	else if ((*stack)->num < (*stack)->next->num && (*stack)->next->num > (*stack)->prev->num \
-		&& (*stack)->num < (*stack)->prev->num)
+	else if ((*stack)->num < (*stack)->next->num && \
+			(*stack)->next->num > (*stack)->prev->num && \
+			(*stack)->num < (*stack)->prev->num)
 		sort_1_3_2(stack, sub_stack, name, res);
-	else if ((*stack)->num > (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num \
-		&& (*stack)->num < (*stack)->prev->num)
+	else if ((*stack)->num > (*stack)->next->num && \
+			(*stack)->next->num < (*stack)->prev->num && \
+			(*stack)->num < (*stack)->prev->num)
 		sort_2_1_3(stack, sub_stack, name, res);
-	else if ((*stack)->num < (*stack)->next->num && (*stack)->next->num > (*stack)->prev->num \
-		&& (*stack)->num > (*stack)->prev->num)
+	else if ((*stack)->num < (*stack)->next->num && \
+			(*stack)->next->num > (*stack)->prev->num && \
+			(*stack)->num > (*stack)->prev->num)
 		sort_2_3_1(stack, sub_stack, name, res);
-	else if ((*stack)->num > (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num \
-		&& (*stack)->num > (*stack)->prev->num)
+	else if ((*stack)->num > (*stack)->next->num && \
+			(*stack)->next->num < (*stack)->prev->num && \
+			(*stack)->num > (*stack)->prev->num)
 		sort_3_1_2(stack, sub_stack, name, res);
-	else if ((*stack)->num > (*stack)->next->num && (*stack)->next->num > (*stack)->prev->num)
+	else if ((*stack)->num > (*stack)->next->num && \
+			(*stack)->next->num > (*stack)->prev->num)
 		sort_3_2_1(stack, sub_stack, name, res);
 }
 
-static void	opt_sort_4(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res)
+static void	opt_sort_4(t_pslist **stack, t_pslist **sub_stack, \
+		t_name name, t_list **res)
 {
-	int			most_small;
-	int			next_small;
+	int	most_small;
+	int	next_small;
 
 	if (name == A)
 	{
@@ -55,10 +76,11 @@ static void	opt_sort_4(t_pslist **stack, t_pslist **sub_stack, t_name name, t_li
 	opt_sort_2(stack, sub_stack, name, res);
 }
 
-static void	opt_sort_5(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res)
+static void	opt_sort_5(t_pslist **stack, t_pslist **sub_stack, \
+		t_name name, t_list **res)
 {
-	int			most_small;
-	int			next_small;
+	int	most_small;
+	int	next_small;
 
 	if (name == A)
 	{
@@ -77,15 +99,15 @@ static void	opt_sort_5(t_pslist **stack, t_pslist **sub_stack, t_name name, t_li
 	opt_sort_3(stack, sub_stack, name, res);
 }
 
-void	under_five_case(t_pslist **stack, t_pslist **stack2, int size, t_name name, t_list **res)
+void	under_five_case(t_stacks *stacks, int size, t_name name, t_list **res)
 {
 	if (size == 2)
-		opt_sort_2(stack, stack2, name, res);
+		opt_sort_2(stacks->stack_1, stacks->stack_2, name, res);
 	else if (size == 3)
-		opt_sort_3(stack, stack2, name, res);
+		opt_sort_3(stacks->stack_1, stacks->stack_2, name, res);
 	else if (size == 4)
-		opt_sort_4(stack, stack2, name, res);
+		opt_sort_4(stacks->stack_1, stacks->stack_2, name, res);
 	else if (size == 5)
-		opt_sort_5(stack, stack2, name, res);
+		opt_sort_5(stacks->stack_1, stacks->stack_2, name, res);
 	return ;
 }

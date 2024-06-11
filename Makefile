@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 INCLUDES = -I./ -I./libft
 SRCS = ./src/ary_init.c \
 		./src/ary_init_utils.c \

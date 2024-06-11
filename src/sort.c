@@ -131,7 +131,11 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 
 static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int b_size)
 {
-	under_five_case(stack_b, stack_a, b_size, B, res);
+	t_stacks	stacks;
+
+	stacks.stack_1 = stack_b;
+	stacks.stack_2 = stack_a;
+	under_five_case(&stacks, b_size, B, res);
 	*stack_b = NULL;
 	return (b_size);
 }
@@ -167,14 +171,16 @@ void	sort(t_pslist **stack_a, t_list **res)
 {
 	int			a_size;
 	t_pslist	*stack_b;
+	t_stacks	stacks;
 
 	stack_b = NULL;
 	a_size = get_stack_size(*stack_a);
 	if (a_size <= 5)
 	{
-		under_five_case(stack_a, NULL, a_size, A, res);
+		stacks.stack_1 = stack_a;
+		stacks.stack_2 = NULL;
+		under_five_case(&stacks, a_size, A, res);
 		ft_lstadd_back(res, ft_lstnew("end"));
-		free_stack(stack_b);
 		return ;
 	}
 	stack_b = NULL;
