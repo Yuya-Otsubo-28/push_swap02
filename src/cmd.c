@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:11 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/03 16:38:17 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:33:56 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*rev_rotate(t_pslist **stack, t_name name)
 
 char	*push(t_pslist **stack1, t_pslist **stack2, t_name name)
 {
-	t_pslist *element;
+	t_pslist	*element;
 
 	element = *stack1;
 	(*stack1)->next->is_top = true;

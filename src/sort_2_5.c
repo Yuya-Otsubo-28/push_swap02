@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:19:12 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 17:07:09 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:35:07 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	sort_2(t_pslist **stack, t_name name, t_list **res)
 {
-	int		head;
-	int 	tail;
+	int	head;
+	int	tail;
 
 	head = (*stack)->num;
 	tail = (*stack)->next->num;
@@ -26,51 +26,41 @@ void	sort_2(t_pslist **stack, t_name name, t_list **res)
 		ft_lstadd_back(res, ft_lstnew(""));
 }
 
-void	sort_3(t_pslist **stack, t_name name, t_list **res)
+static void	sub_sort_3(t_pslist **stack, t_name name, t_list **res)
 {
-	if ((*stack)->num < (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num)
-		ft_lstadd_back(res, ft_lstnew(""));
-	if ((*stack)->num < (*stack)->next->num && (*stack)->next->num > (*stack)->prev->num \
-		&& (*stack)->num < (*stack)->prev->num)
-	{
-		ft_lstadd_back(res, ft_lstnew(swap(stack, name)));
-		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	}
-	if ((*stack)->num > (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num \
-		&& (*stack)->num < (*stack)->prev->num)
-		ft_lstadd_back(res, ft_lstnew(swap(stack, name)));
-	if ((*stack)->num < (*stack)->next->num && (*stack)->next->num > (*stack)->prev->num \
+	if ((*stack)->num < (*stack)->next->num && \
+			(*stack)->next->num > (*stack)->prev->num \
 		&& (*stack)->num > (*stack)->prev->num)
 		ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
-	if ((*stack)->num > (*stack)->next->num && (*stack)->next->num < (*stack)->prev->num \
+	if ((*stack)->num > (*stack)->next->num && \
+			(*stack)->next->num < (*stack)->prev->num \
 		&& (*stack)->num > (*stack)->prev->num)
 		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
-	if ((*stack)->num > (*stack)->next->num && (*stack)->next->num > (*stack)->prev->num)
+	if ((*stack)->num > (*stack)->next->num && \
+			(*stack)->next->num > (*stack)->prev->num)
 	{
 		ft_lstadd_back(res, ft_lstnew(swap(stack, name)));
 		ft_lstadd_back(res, ft_lstnew(rev_rotate(stack, name)));
 	}
 }
 
-void	get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size)
+void	sort_3(t_pslist **stack, t_name name, t_list **res)
 {
-	int	i;
-
-	*most_small = INT_MAX;
-	*next_small = INT_MAX;
-	i = 0;
-	while (i++ < size)
+	if ((*stack)->num < (*stack)->next->num && \
+			(*stack)->next->num < (*stack)->prev->num)
+		ft_lstadd_back(res, ft_lstnew(""));
+	if ((*stack)->num < (*stack)->next->num && \
+			(*stack)->next->num > (*stack)->prev->num \
+		&& (*stack)->num < (*stack)->prev->num)
 	{
-		if (stack->num <= *most_small)
-			*most_small = stack->num;
-		stack = stack->next;
+		ft_lstadd_back(res, ft_lstnew(swap(stack, name)));
+		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
 	}
-	while (i-- > 0)
-	{
-		if (stack->num > *most_small && stack->num <= *next_small)
-			*next_small = stack->num;
-		stack = stack->next;
-	}
+	if ((*stack)->num > (*stack)->next->num && \
+			(*stack)->next->num < (*stack)->prev->num \
+		&& (*stack)->num < (*stack)->prev->num)
+		ft_lstadd_back(res, ft_lstnew(swap(stack, name)));
+	sub_sort_3(stack, name, res);
 }
 
 void	sort_4(t_pslist **stack, t_name name, t_list **res)
@@ -137,13 +127,11 @@ void	sort_5(t_pslist **stack, t_name name, t_list **res)
 // 	}
 // 	printf("size: %d\n", size);
 
-
 // 	printf("***********************\n\n");
 // 	printf("\ttest: compress\n\n");
 // 	comp_res = compress(ary_res, size);
 // 	for (int i = 0; i < size; i++)
 // 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
-
 
 // 	printf("***********************\n\n");
 // 	printf("\ttest: stack_init\n\n");

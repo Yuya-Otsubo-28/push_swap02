@@ -6,14 +6,14 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/08 14:05:45 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/11 19:25:15 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-t_pslist *free_stack(t_pslist *stack)
+t_pslist	*free_stack(t_pslist *stack)
 {
 	int			stack_size;
 	t_pslist	*next;

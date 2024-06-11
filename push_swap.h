@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/11 18:25:10 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:59:17 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void		sort_4(t_pslist **stack, t_name name, t_list **res);
 
 void		sort_5(t_pslist **stack, t_name name, t_list **res);
 
-t_bool		is_sorted(t_pslist *stack);
-
 t_bool		print_result(t_list *res);
 
 int			get_stack_size(t_pslist *stack);
@@ -72,8 +70,6 @@ int			get_stack_size(t_pslist *stack);
 t_pslist	*free_stack(t_pslist *stack_a);
 
 void		under_five_case(t_stacks *stacks, int size, t_name name, t_list **res);
-
-void		get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size);
 
 /*********************************/
 /*                               */
@@ -114,5 +110,19 @@ void	sort_1_2_3(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **re
 void	sort_1_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
 
 void	sort_2_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+
+/*********************************/
+/*                               */
+/*         sort_utils2.c         */
+/*                               */
+/*********************************/
+
+t_bool		is_sorted(t_pslist *stack);
+
+int			get_middle(t_pslist *stack);
+
+int			get_stack_size(t_pslist *stack);
+
+void	get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:46:58 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/02 17:09:00 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:24:59 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,57 +32,8 @@
 // 	printf("--------------------\n"); fflush(stdin);
 // }
 
-t_bool	is_sorted(t_pslist *stack)
-{
-	while (1)
-	{
-		if (stack->next->is_top)
-			break ;
-		if (stack->num > stack->next->num)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
-
-int	get_stack_size(t_pslist *stack)
-{
-	int	size;
-
-	if (!stack)
-		return (0);
-	size = 0;
-	while (1)
-	{
-		size++;
-		if (stack->next->is_top)
-			break ;
-		stack = stack->next;
-	}
-	return (size);
-}
-
-static int	get_middle(t_pslist *stack)
-{
-	int	max;
-	int	min;
-
-	max = INT_MIN;
-	min = INT_MAX;
-	while (1)
-	{
-		if (stack->next->is_top)
-			break ;
-		if (stack->num > max)
-			max = stack->num;
-		if (stack->num < min)
-			min = stack->num;
-		stack = stack->next;
-	}
-	return (min + (max - min) / 2);
-}
-
-static int	make_stack_b(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int a_size)
+static int	make_stack_b(t_pslist **stack_a, t_pslist **stack_b, \
+		t_list **res, int a_size)
 {
 	int			middle;
 	int			i;
@@ -129,7 +80,8 @@ static int	push_half_to_a(t_pslist **stack_a, t_pslist **stack_b, t_list **res)
 	return (count);
 }
 
-static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int b_size)
+static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, \
+		t_list **res, int b_size)
 {
 	t_stacks	stacks;
 
@@ -140,8 +92,8 @@ static int	proc_of_leaf(t_pslist **stack_a, t_pslist **stack_b, t_list **res, in
 	return (b_size);
 }
 
-
-static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, t_list **res, int pre_size)
+static int	recusive_sort(t_pslist **stack_a, t_pslist **stack_b, \
+		t_list **res, int pre_size)
 {
 	int	b_size;
 	int	sorted_size;

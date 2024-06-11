@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:16:40 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/05/22 15:16:40 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:21:25 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,11 @@ t_pslist	**stack_init(int *input, int size)
 // 	}
 // 	printf("size: %d\n", size);
 
-
 // 	printf("***********************\n\n");
 // 	printf("\ttest: compress\n\n");
 // 	comp_res = compress(ary_res, size);
 // 	for (int i = 0; i < size; i++)
 // 		printf("comp_res[%d]: %d\n", i, comp_res[i]);
-
 
 // 	printf("***********************\n\n");
 // 	printf("\ttest: stack_init\n\n");

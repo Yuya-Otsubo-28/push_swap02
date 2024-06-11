@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:38:14 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/07 16:34:38 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/11 19:25:38 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_bool	print_result(t_list *res)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = res;
 	while (1)
@@ -29,7 +29,7 @@ t_bool	print_result(t_list *res)
 	while (1)
 	{
 		if (!ft_strncmp((char *)res->content, "end", 3))
-			return (true) ;
+			return (true);
 		if (((char *)(res->content))[0])
 			ft_putendl_fd(res->content, STDOUT_FILENO);
 		res = res->next;
