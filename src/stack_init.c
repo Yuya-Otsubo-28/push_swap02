@@ -23,7 +23,7 @@ static t_pslist	*pslist_new(int n)
 	res->prev = NULL;
 	res->next = NULL;
 	res->num = n;
-	res->is_top = false;
+	res->is_top = FALSE;
 	return (res);
 }
 
@@ -35,7 +35,7 @@ static t_pslist	*pslist_addback(t_pslist **lst, t_pslist *new)
 		return (NULL);
 	if (!*lst)
 	{
-		new->is_top = true;
+		new->is_top = TRUE;
 		*lst = new;
 		return (*lst);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:38:14 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/11 19:25:38 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:48:58 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_bool	print_result(t_list *res)
 	while (1)
 	{
 		if (!node)
-			return (false);
+			return (FALSE);
 		if (!ft_strncmp((char *)node->content, "end", 3))
 			break ;
 		node = node->next;
@@ -29,7 +29,7 @@ t_bool	print_result(t_list *res)
 	while (1)
 	{
 		if (!ft_strncmp((char *)res->content, "end", 3))
-			return (true);
+			return (TRUE);
 		if (((char *)(res->content))[0])
 			ft_putendl_fd(res->content, STDOUT_FILENO);
 		res = res->next;

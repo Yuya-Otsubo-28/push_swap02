@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:39:49 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/11 20:01:05 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:49:02 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_bool	is_sorted(t_pslist *stack)
 		if (stack->next->is_top)
 			break ;
 		if (stack->num > stack->next->num)
-			return (false);
+			return (FALSE);
 		stack = stack->next;
 	}
-	return (true);
+	return (TRUE);
 }
 
 int	get_stack_size(t_pslist *stack)

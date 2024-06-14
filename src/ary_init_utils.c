@@ -17,11 +17,11 @@ t_bool	is_int_range(int res, int flag, char c)
 {
 	if (res * flag > INT_MAX / 10 \
 	|| (res * flag == INT_MAX / 10 && c - '0' > INT_MAX % 10))
-		return (false);
+		return (FALSE);
 	if (res * flag < INT_MIN / 10 \
 	|| (res * flag == INT_MIN / 10 && -(c - '0') < INT_MIN % 10))
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }
 
 t_bool	is_valid_arg(char *arg)
@@ -41,13 +41,13 @@ t_bool	is_valid_arg(char *arg)
 	while (arg[i])
 	{
 		if (!ft_isdigit(arg[i]))
-			return (false);
+			return (FALSE);
 		if (!is_int_range(res, flag, arg[i]))
-			return (false);
+			return (FALSE);
 		res *= 10;
 		res += arg[i++] - '0';
 	}
-	return (true);
+	return (TRUE);
 }
 
 t_bool	is_duplicated(int *ary, int size)
@@ -62,10 +62,10 @@ t_bool	is_duplicated(int *ary, int size)
 		while (j < size)
 		{
 			if (ary[i] == ary[j])
-				return (true);
+				return (TRUE);
 			j++;
 		}
 		i++;
 	}
-	return (false);
+	return (FALSE);
 }
