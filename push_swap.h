@@ -6,7 +6,7 @@
 /*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/11 19:59:17 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:46:11 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
-#include "libft.h"
+# include "libft.h"
 
-# define true 1
-# define false 0
+# define TRUE 1
+# define FALSE 0
 
 # define A 1
 # define B -1
 
-typedef int t_bool;
-typedef int t_name;
+typedef int	t_bool;
+typedef int	t_name;
 
 typedef struct s_pslist {
 	int				num;
 	t_bool			is_top;
 	struct s_pslist	*next;
 	struct s_pslist	*prev;
-} t_pslist ;
+}	t_pslist;
 
 typedef struct s_stacks {
-	t_pslist **stack_1;
-	t_pslist **stack_2;
-} t_stacks ;
+	t_pslist	**stack_1;
+	t_pslist	**stack_2;
+}	t_stacks;
 
 char		*swap(t_pslist **stack, t_name name);
 
@@ -69,19 +69,19 @@ int			get_stack_size(t_pslist *stack);
 
 t_pslist	*free_stack(t_pslist *stack_a);
 
-void		under_five_case(t_stacks *stacks, int size, t_name name, t_list **res);
+void		under_five_case(t_stacks *stacks, int size, \
+						t_name name, t_list **res);
 
 /*********************************/
 /*                               */
 /*       ary_init_utils.c        */
 /*                               */
 /*********************************/
+t_bool		is_int_range(int res, int flag, char c);
 
-t_bool	is_int_range(int res, int flag, char c);
+t_bool		is_valid_arg(char *arg);
 
-t_bool	is_valid_arg(char *arg);
-
-t_bool	is_duplicated(int *ary, int size);
+t_bool		is_duplicated(int *ary, int size);
 
 /*********************************/
 /*                               */
@@ -89,15 +89,20 @@ t_bool	is_duplicated(int *ary, int size);
 /*                               */
 /*********************************/
 
-void	sort_1_3_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_1_3_2(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
-void	sort_2_1_3(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_2_1_3(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
-void	sort_2_3_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_2_3_1(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
-void	sort_3_1_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_3_1_2(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
-void	sort_3_2_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_3_2_1(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
 /*********************************/
 /*                               */
@@ -105,11 +110,14 @@ void	sort_3_2_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **re
 /*                               */
 /*********************************/
 
-void	sort_1_2_3(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_1_2_3(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
-void	sort_1_2(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_1_2(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
-void	sort_2_1(t_pslist **stack, t_pslist **sub_stack, t_name name, t_list **res);
+void		sort_2_1(t_pslist **stack, t_pslist **sub_stack, \
+					t_name name, t_list **res);
 
 /*********************************/
 /*                               */
@@ -123,6 +131,7 @@ int			get_middle(t_pslist *stack);
 
 int			get_stack_size(t_pslist *stack);
 
-void	get_small_nums(t_pslist *stack, int *most_small, int *next_small, int size);
+void		get_small_nums(t_pslist *stack, int *most_small, \
+					int *next_small, int size);
 
 #endif

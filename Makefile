@@ -10,6 +10,7 @@ SRCS = ./src/ary_init.c \
 		./src/push_swap.c \
 		./src/sort_2_5.c \
 		./src/sort.c \
+		./src/sort_utils.c \
 		./src/stack_init.c \
 		./src/under_five_case.c \
 		./src/opt_sort_utils1.c \
