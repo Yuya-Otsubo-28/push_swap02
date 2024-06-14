@@ -36,6 +36,8 @@ t_bool	is_valid_arg(char *arg)
 	if (*arg == '+' || *arg == '-')
 		if (*arg++ == '-')
 			flag *= -1;
+	if (!(*arg))
+		return (FALSE);
 	i = 0;
 	res = 0;
 	while (arg[i])

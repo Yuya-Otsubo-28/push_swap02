@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ary_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/11 18:14:27 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:13:49 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,6 @@ int	*ary_init(int argc, char *argv[], int *len)
 		return (err_return(res, NULL));
 	return (res);
 }
-
-/*	tests
-- basic input OK
-- input as a string OK
-- duplicated input OK (NO Leaks, return NULL)
-- outrange of int OK (NO Leaks, return NULL)
-*/
 
 // int	main(int argc, char *argv[])
 // {

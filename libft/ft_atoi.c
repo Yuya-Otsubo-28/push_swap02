@@ -42,7 +42,7 @@ int	ft_atoi(const char *nptr)
 
 // int	main(void)
 // {
-// 	char num[] = "-9223372036854775809";
+// 	char num[] = "-";
 
 // 	printf("num: %s\n", num);
 // 	printf("ft_atoi: %d\n", ft_atoi(num));
