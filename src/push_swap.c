@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/11 19:25:15 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:39:05 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int	main(int argc, char *argv[])
 	t_list		*res;
 
 	res = NULL;
-	if (argc < 2)
-		return (err_return(NULL, NULL, NULL));
 	input = ary_init(argc, argv, &input_len);
 	if (!input)
 		return (err_return(NULL, NULL, NULL));

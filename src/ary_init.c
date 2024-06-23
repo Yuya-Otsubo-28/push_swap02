@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ary_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:38:08 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/14 10:13:49 by yuotsubo         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:36:46 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	*ary_init(int argc, char *argv[], int *len)
 	size_t	i;
 	int		*res;
 
+	if (argc == 1)
+		exit(EXIT_SUCCESS);
 	if (argc == 2)
 		return (arg_2_case(argv, len));
 	*len = argc - 1;

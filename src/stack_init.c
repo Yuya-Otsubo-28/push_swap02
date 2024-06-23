@@ -20,8 +20,8 @@ static t_pslist	*pslist_new(int n)
 	res = (t_pslist *)malloc(sizeof(t_pslist));
 	if (!res)
 		return (NULL);
-	res->prev = NULL;
-	res->next = NULL;
+	res->prev = res;
+	res->next = res;
 	res->num = n;
 	res->is_top = FALSE;
 	return (res);
