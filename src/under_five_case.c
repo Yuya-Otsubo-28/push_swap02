@@ -65,12 +65,10 @@ static void	opt_sort_4(t_pslist **stack, t_pslist **sub_stack, \
 		return ;
 	}
 	get_small_nums(*stack, &most_small, &next_small, 4);
-	while ((*stack)->num != most_small)
-		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	rotate_untill_n(stack, name, res, most_small);
 	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
 	ft_lstadd_back(res, ft_lstnew(rotate(sub_stack, name * -1)));
-	while ((*stack)->num != next_small)
-		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	rotate_untill_n(stack, name, res, next_small);
 	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
 	ft_lstadd_back(res, ft_lstnew(rotate(sub_stack, name * -1)));
 	opt_sort_2(stack, sub_stack, name, res);
@@ -88,12 +86,10 @@ static void	opt_sort_5(t_pslist **stack, t_pslist **sub_stack, \
 		return ;
 	}
 	get_small_nums(*stack, &most_small, &next_small, 5);
-	while ((*stack)->num != most_small)
-		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	rotate_untill_n(stack, name, res, most_small);
 	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
 	ft_lstadd_back(res, ft_lstnew(rotate(sub_stack, name * -1)));
-	while ((*stack)->num != next_small)
-		ft_lstadd_back(res, ft_lstnew(rotate(stack, name)));
+	rotate_untill_n(stack, name, res, next_small);
 	ft_lstadd_back(res, ft_lstnew(push(stack, sub_stack, name * -1)));
 	ft_lstadd_back(res, ft_lstnew(rotate(sub_stack, name * -1)));
 	opt_sort_3(stack, sub_stack, name, res);
