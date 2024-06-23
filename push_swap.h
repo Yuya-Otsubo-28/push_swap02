@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
+/*   By: yuotsubo <yuotsubo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:05:42 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/23 20:15:11 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/23 21:01:24 by yuotsubo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void		sort_5(t_pslist **stack, t_name name, t_list **res);
 /*                               */
 /*********************************/
 
-void	rotate_untill_n(t_pslist **stack, t_name name, t_list **res, int n);
+void		rotate_untill_n(t_pslist **stack, t_name name, t_list **res, int n);
 
 /*********************************/
 /*                               */
