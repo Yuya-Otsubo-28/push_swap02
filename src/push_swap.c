@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:10:05 by yuotsubo          #+#    #+#             */
-/*   Updated: 2024/06/23 18:39:05 by yotsubo          ###   ########.fr       */
+/*   Updated: 2024/06/25 00:07:58 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	main(int argc, char *argv[])
 	input = ary_init(argc, argv, &input_len);
 	if (!input)
 		return (err_return(NULL, NULL, NULL));
+	if (!input_len)
+		return (err_return(input, NULL, NULL));
 	input = map_and_free(compress(input, input_len), input);
 	if (!input)
 		return (err_return(NULL, NULL, NULL));
